@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vindorel_Online.Models;
 
 namespace Vindorel_Online.Controllers
 {
@@ -13,25 +14,22 @@ namespace Vindorel_Online.Controllers
         {
             return View();
         }
-
-        // GET: Vindorel/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Vindorel/Create
         public ActionResult Create()
         {
+
             return View();
         }
-
         // POST: Vindorel/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
+                vindorelEntities vindorel = new vindorelEntities();
+                Players Player = new Players();
+                vindorel.SaveChanges();
+                
                 // TODO: Add insert logic here
 
                 return RedirectToAction("Index");
@@ -42,48 +40,8 @@ namespace Vindorel_Online.Controllers
             }
         }
 
-        // GET: Vindorel/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
-        // POST: Vindorel/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: Vindorel/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Vindorel/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
