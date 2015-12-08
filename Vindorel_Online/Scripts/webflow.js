@@ -4318,8 +4318,8 @@
  */
 Webflow.require('ix').init([
   {"slug":"onload","name":"Onload","value":{"style":{"x":"0px","y":"-100px"},"triggers":[{"type":"load","stepsA":[{"transition":"transform 850ms ease 0ms","x":"0px","y":"5px"}],"stepsB":[]}]}},
-  {"slug":"bulank","name":"Bulanık","value":{"style":{"opacity":0},"triggers":[{"type":"load","stepsA":[{"opacity":1,"transition":"opacity 850ms ease 0ms"}],"stepsB":[]}]}},
+  {"slug":"bulanik","name":"Bulanik","value":{"style":{"opacity":0},"triggers":[{"type":"load","stepsA":[{"opacity":1,"transition":"opacity 850ms ease 0ms"}],"stepsB":[]}]}},
   {"slug":"caprazsag","name":"CaprazSag","value":{"style":{"opacity":0},"triggers":[{"type":"load","stepsA":[{"opacity":1,"transition":"transform 850ms ease 0ms, opacity 1000ms ease 0ms","scale":1.5,"rotate":"145deg","x":"-22px","y":"40px"}],"stepsB":[]}]}},
   {"slug":"caprazsol","name":"CaprazSol","value":{"style":{"opacity":0},"triggers":[{"type":"load","stepsA":[{"opacity":1,"transition":"transform 850ms ease 0ms, opacity 1000ms ease 0ms","scale":1.5,"rotate":"-145deg","x":"22px","y":"40px"}],"stepsB":[]}]}},
-  {"slug":"button","name":"button","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"transition":"transform 500ms ease 0ms","scale":1.27}],"stepsB":[{"transition":"transform 500ms ease 0ms","scale":1}]}]}}
+  {"slug":"buttonplay","name":"buttonplay","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"transition":"transform 500ms ease 0ms","scale":1.27}],"stepsB":[{"transition":"transform 500ms ease 0ms","scale":1}]}]}}
 ]);
