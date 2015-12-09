@@ -68,6 +68,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Mvc.Html5">
+      <HintPath>..\..\System.Web.Mvc.Html5.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -137,6 +140,7 @@
     <Compile Include="Models\Players.cs">
       <DependentUpon>VindorelOnline.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SHA256.cs" />
     <Compile Include="Models\Towns.cs">
       <DependentUpon>VindorelOnline.tt</DependentUpon>
     </Compile>
