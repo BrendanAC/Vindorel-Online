@@ -27,8 +27,8 @@ namespace Vindorel_Online
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/normalize.css)",
-                      "~/Content/vindoreltest.webflow.css",
-                      "~/Content/webflow.css"));
+                      "~/Content/webflow.css",
+                      "~/Content/vindoreltest.webflow.css"));
                       
 
             bundles.Add(new ScriptBundle("~/bundles/javascript").Include(

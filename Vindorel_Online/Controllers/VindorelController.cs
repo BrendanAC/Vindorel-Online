@@ -12,6 +12,7 @@ namespace Vindorel_Online.Controllers
         // GET: Vindorel
         public ActionResult Index()
         {
+            
             return View();
         }
         // GET: Vindorel/Create

@@ -1,6 +1,6 @@
-﻿
-@{
+﻿@{
     Layout = null;
+    ViewBag.Title = "Vindorel Online";
 }
 <!DOCTYPE html>
 <html data-wf-site="5664718fcdf237d35fd4534f" data-wf-page="5664718fcdf237d35fd45350" lang="tur">
@@ -9,10 +9,9 @@
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Webflow">
-    @Styles.Render("~/Content/css")
-    <link rel="stylesheet" type="text/css" href=@Url.Content("~/Content/vindoreltest.webflow.css")>
     <link rel="stylesheet" type="text/css" href=@Url.Content("~/Content/normalize.css")>
     <link rel="stylesheet" type="text/css" href=@Url.Content("~/Content/webflow.css")>
+    <link rel="stylesheet" type="text/css" href=@Url.Content("~/Content/vindoreltest.webflow.css")>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
     <script>
         WebFont.load({
@@ -27,10 +26,25 @@
 </head>
 <body class="index">
     <div class="w-section upper">
+        <div class="w-form login-form">
+            <form id="email-form" name="email-form" data-name="Email Form" class="formlogin">
+                <label for="name">Login:</label>
+                <input id="name" type="text" placeholder="Login id" name="name" data-name="Name" class="w-input formismail">
+                <label for="email">Password:</label>
+                <input id="email" type="email" placeholder="Enter your email" name="email" data-name="Email" required="required" class="w-input formismail"><a href="#" data-ix="buttonsize" class="w-button registerbutton">Register &nbsp;&nbsp;</a>
+                <input type="submit" value="Login" data-wait="Please wait..." data-ix="buttonsize" class="w-button button4">
+            </form>
+            <div class="w-form-done">
+                <p>Thank you! Your submission has been received!</p>
+            </div>
+            <div class="w-form-fail">
+                <p>Oops! Something went wrong while submitting the form</p>
+            </div>
+        </div>
         <div class="w-clearfix header">
             <h1 data-ix="onload" class="vindorelh1">VİNDOREL ONLİNE</h1>
-            <h2 data-ix="bulank" class="midheadline">Courage Must Be Earned</h2><img width="120" height="400" src="~/images/sword.png" data-ix="caprazsag" class="sw2"><img width="120" height="400" src="~/images/sword.png" data-ix="caprazsol" class="sw1">
-        </div><a href="index.html" data-ix="buttonplay" class="w-button playbutton">PLAY NOW</a>
+            <h2 data-ix="bulanik" class="midheadline">Courage Must Be Earned</h2><img width="120" height="400" src=@Url.Content("~/images/sword.png") data-ix="caprazsag" class="sw2"><img width="120" height="400" src=@Url.Content("~/images/sword.png") data-ix="caprazsol" class="sw1">
+        </div><a href="#" data-ix="buttonplay" class="w-button playbutton">PLAY NOW</a>
     </div>
     <div class="w-section low"></div>
     <script type="text/javascript" src=@Url.Content("https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")></script>
