@@ -27,5 +27,6 @@ namespace Vindorel_Online.Models
     
         public virtual DbSet<Players> Players { get; set; }
         public virtual DbSet<Towns> Towns { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

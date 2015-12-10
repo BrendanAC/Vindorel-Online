@@ -6,15 +6,15 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Access" Type="Boolean" Nullable="false" />
+    <Property Name="Access" Type="Boolean" Nullable="true" />
     <Property Name="Race" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Job" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ExpPoint" Type="Int32" Nullable="false" />
-    <Property Name="TechPoint" Type="Int32" Nullable="false" />
-    <Property Name="Gold" Type="Int32" Nullable="false" />
-    <Property Name="HeroName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpPoint" Type="Int32" Nullable="true" />
+    <Property Name="TechPoint" Type="Int32" Nullable="true" />
+    <Property Name="Gold" Type="Int32" Nullable="true" />
+    <Property Name="HeroName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="true" />
     <NavigationProperty Name="Towns" Relationship="Self.FK_Towns_Players" FromRole="Players" ToRole="Towns" />
   </EntityType>
   <EntityType Name="Towns">
@@ -73,5 +73,16 @@
       <End Role="Players" EntitySet="Players" />
       <End Role="Towns" EntitySet="Towns" />
     </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="vindorelModel.sysdiagrams" />
   </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>

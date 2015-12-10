@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="vindorelModelStoreContainer" CdmEntityContainer="vindorelEntities">
     <EntitySetMapping Name="Players">
-      <EntityTypeMapping TypeName="vindorelModel.Players">
+      <EntityTypeMapping TypeName="IsTypeOf(vindorelModel.Players)">
         <MappingFragment StoreEntitySet="Players">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Login" ColumnName="Login" />
@@ -19,7 +19,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Towns">
-      <EntityTypeMapping TypeName="vindorelModel.Towns">
+      <EntityTypeMapping TypeName="IsTypeOf(vindorelModel.Towns)">
         <MappingFragment StoreEntitySet="Towns">
           <ScalarProperty Name="TownId" ColumnName="TownId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -52,6 +52,17 @@
           <ScalarProperty Name="BuildingSpace10_Level" ColumnName="BuildingSpace10_Level" />
           <ScalarProperty Name="BuildingSpace11_Type" ColumnName="BuildingSpace11_Type" />
           <ScalarProperty Name="BuildingSpace11_Level" ColumnName="BuildingSpace11_Level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="IsTypeOf(vindorelModel.sysdiagrams)">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

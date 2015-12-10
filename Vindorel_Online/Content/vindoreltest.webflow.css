@@ -639,7 +639,9 @@ body {
   margin-right: auto;
   margin-left: -2px;
   padding-right: 4px;
-  background-color: rgba(8, 7, 10, 0.46);
+  background-color: rgba(3, 3, 3, 0.76);
+  color: #f7e1e1;
+  text-decoration: none;
 }
 
 .form8 {
@@ -714,7 +716,7 @@ body {
   font-size: 17px;
   font-style: normal;
   font-weight: 500;
-  text-decoration: underline;
+  text-decoration: none;
   text-shadow: black 1px 1px 6px;
 }
 
@@ -723,9 +725,11 @@ body {
 }
 
 .body2 {
+  background-color: #161212;
   background-image: url('../images/590964.jpg');
   background-position: 0px 0px;
   background-size: cover;
+  font-family: Baumans, sans-serif;
 }
 
 .formlogin {
@@ -786,6 +790,18 @@ html.w-mod-js *[data-ix="onload2"] {
   -webkit-transform: translate(0px, -500px);
   -ms-transform: translate(0px, -500px);
   transform: translate(0px, -500px);
+}
+
+html.w-mod-js *[data-ix="onload3"] {
+  -webkit-transform: translate(-350px, 0px);
+  -ms-transform: translate(-350px, 0px);
+  transform: translate(-350px, 0px);
+}
+
+html.w-mod-js *[data-ix="onlad5"] {
+  -webkit-transform: translate(0px, -600px);
+  -ms-transform: translate(0px, -600px);
+  transform: translate(0px, -600px);
 }
 
 @media (max-width: 991px) {}

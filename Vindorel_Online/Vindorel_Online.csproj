@@ -68,9 +68,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Mvc.Html5">
-      <HintPath>..\..\System.Web.Mvc.Html5.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -141,6 +138,9 @@
       <DependentUpon>VindorelOnline.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SHA256.cs" />
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>VindorelOnline.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Towns.cs">
       <DependentUpon>VindorelOnline.tt</DependentUpon>
     </Compile>
@@ -175,6 +175,7 @@
       <DependentUpon>VindorelOnline.edmx</DependentUpon>
       <LastGenOutput>VindorelOnline.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\VindorelOnline.edmx.sql" />
     <Content Include="Models\VindorelOnline.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VindorelOnline.edmx</DependentUpon>

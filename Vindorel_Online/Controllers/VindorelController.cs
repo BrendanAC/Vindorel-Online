@@ -9,7 +9,7 @@ namespace Vindorel_Online.Controllers
 {
     public class VindorelController : Controller
     {
-        private vindorelEntities db = new vindorelEntities();
+        
         // GET: Vindorel
         public ActionResult Index()
         {
@@ -27,14 +27,21 @@ namespace Vindorel_Online.Controllers
         [HttpPost]
         public ActionResult Create(Players newuser)
         {
-            
             try
             {
+                var db = new vindorelEntities();
                 newuser.Password = SHA256.Encode(newuser.Password);
-                db.Players.Add(newuser);
+                newuser.HeroName = "Your Hero name";
+                newuser.Gold = 5;
+                newuser.TechPoint = 0;
+                newuser.ExpPoint = 0;
+
+                db.Players.Add(newuser);       
                 db.SaveChanges();
-                
-                
+
+               
+                ViewBag.Message = "Successfully Registration Done";
+
 
 
                 // TODO: Add insert logic here
@@ -43,8 +50,10 @@ namespace Vindorel_Online.Controllers
             }
             catch
             {
-                return View("Bir hata meydana geldi");
+                
+                return View("Error");
             }
+        
         }
 
 

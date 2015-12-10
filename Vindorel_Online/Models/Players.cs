@@ -24,12 +24,12 @@ namespace Vindorel_Online.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public bool Access { get; set; }
+        public Nullable<bool> Access { get; set; }
         public string Race { get; set; }
         public string Job { get; set; }
-        public int ExpPoint { get; set; }
-        public int TechPoint { get; set; }
-        public int Gold { get; set; }
+        public Nullable<int> ExpPoint { get; set; }
+        public Nullable<int> TechPoint { get; set; }
+        public Nullable<int> Gold { get; set; }
         public string HeroName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

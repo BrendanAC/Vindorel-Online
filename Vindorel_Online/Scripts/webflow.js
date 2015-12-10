@@ -4326,5 +4326,8 @@ Webflow.require('ix').init([
   {"slug":"tekbutton","name":"Tekbutton","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"wait":200,"transition":"transform 500ms ease 0ms","scale":0.79}],"stepsB":[{"transition":"transform 500ms ease 0ms","scale":1}]}]}},
   {"slug":"radi1","name":"radi1","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"opacity":1,"transition":"transform 500ms ease 0ms, opacity 500ms ease 0ms","scale":0.81}],"stepsB":[]},{"type":"click","selector":".radi","stepsA":[],"stepsB":[]}]}},
   {"slug":"onload2","name":"onload2","value":{"style":{"x":"0px","y":"-500px"},"triggers":[{"type":"load","stepsA":[{"transition":"transform 1000ms ease 0ms","x":"0px","y":"0px"}],"stepsB":[]}]}},
-  {"slug":"buttonsize","name":"buttonsize","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"transition":"transform 500ms ease 0ms","scale":1.17}],"stepsB":[{"transition":"transform 500ms ease 0ms","scale":1}]}]}}
+  {"slug":"buttonsize","name":"buttonsize","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"transition":"transform 500ms ease 0ms","scale":1.17}],"stepsB":[{"transition":"transform 500ms ease 0ms","scale":1}]}]}},
+  {"slug":"onload3","name":"onload3","value":{"style":{"x":"-350px","y":"0px"},"triggers":[{"type":"load","preload":true,"stepsA":[{"wait":1000,"transition":"transform 500ms ease 0ms","x":"0px","y":"0px"}],"stepsB":[]}]}},
+  {"slug":"onlad5","name":"onlad5","value":{"style":{"x":"0px","y":"-600px"},"triggers":[{"type":"load","preload":true,"stepsA":[{"wait":1000,"transition":"transform 500ms ease 0ms","x":"0px","y":"0px"}],"stepsB":[]}]}},
+  {"slug":"ekranyukleme","name":"ekranyukleme","value":{"style":{},"triggers":[{"type":"load","stepsA":[{}],"stepsB":[]}]}}
 ]);
