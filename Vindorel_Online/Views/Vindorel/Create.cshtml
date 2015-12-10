@@ -1,8 +1,8 @@
 ﻿@model Vindorel_Online.Models.Players
 @{
     Layout = null;
+    ViewBag.Title = "Register-Vindorel Online";
 }
-
 <!DOCTYPE html>
 
 <html data-wf-site="5664718fcdf237d35fd4534f" data-wf-page="56674863acde993364d49858" lang="tur">
@@ -32,6 +32,7 @@
                
                 @using (Html.BeginForm("Create", "Vindorel", FormMethod.Post, new { id = "email-form", name = "email-form", @class = "form78" }))
                 {
+                    @Html.ValidationSummary()
                     <label for="name">Login:</label>
                     @Html.TextBoxFor(newuser => newuser.Login, new { id = "name", @class = "w-input form4", @type = "text", name = "name", required = "required", placeholder = "Enter your login id" })
                     <label for="field">Password:</label>

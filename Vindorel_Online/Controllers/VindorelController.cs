@@ -25,35 +25,22 @@ namespace Vindorel_Online.Controllers
         }
         // POST: Vindorel/Create
         [HttpPost]
-        public ActionResult Create(Players newuser)
+        public RedirectToRouteResult Create(Players newuser)
         {
-            try
-            {
                 var db = new vindorelEntities();
                 newuser.Password = SHA256.Encode(newuser.Password);
                 newuser.HeroName = "Your Hero name";
                 newuser.Gold = 5;
+                newuser.Access = false;
                 newuser.TechPoint = 0;
                 newuser.ExpPoint = 0;
 
                 db.Players.Add(newuser);       
                 db.SaveChanges();
 
-               
-                ViewBag.Message = "Successfully Registration Done";
-
-
-
                 // TODO: Add insert logic here
 
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                
-                return View("Error");
-            }
-        
         }
 
 

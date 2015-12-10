@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Vindorel_Online.Models.Players
+@{
     Layout = null;
     ViewBag.Title = "Vindorel Online";
 }
@@ -27,13 +28,17 @@
 <body class="index">
     <div class="w-section upper">
         <div class="w-form login-form">
-            <form id="email-form" name="email-form" data-name="Email Form" class="formlogin">
+            @using (Html.BeginForm("LogOn", "Vindorel", FormMethod.Post, new { id = "email-form", name = "email-form", @class = "formlogin" }))
+            {
+                @Html.Hidden("returnUrl",Request.Url.PathAndQuery)
+
+                @Html.ValidationSummary(true, "Login Failed.Check your login details");
                 <label for="name">Login:</label>
-                <input id="name" type="text" placeholder="Login id" name="name" data-name="Name" class="w-input formismail">
+                @Html.TextBoxFor(m => m.Login, new {id="name",@type ="text",placeholder="Login id",required="required",name="name",@class="w-input formismail"})
                 <label for="email">Password:</label>
-                <input id="email" type="email" placeholder="Enter your email" name="email" data-name="Email" required="required" class="w-input formismail"><a href="@Url.Action("Create", "Vindorel")" data-ix="buttonsize" class="w-button registerbutton">Register &nbsp;&nbsp;</a>
+                @Html.TextBoxFor(m => m.Password, new { id = "email", @type = "email", placeholder = "Email", name = "email", required = "required", @class = "w-input formismail" })<a href="@Url.Action("Create", "Vindorel")" data-ix="buttonsize" class="w-button registerbutton">Register &nbsp;&nbsp;</a>
                 <input type="submit" value="Login" data-wait="Please wait..." data-ix="buttonsize" class="w-button button4">
-            </form>
+            }
             <div class="w-form-done">
                 <p>Thank you! Your submission has been received!</p>
             </div>
