@@ -17,7 +17,7 @@ namespace Vindorel_Online
             routes.MapRoute(
                 name:"Default",
                 url:"{controller}/{action}/{id}",
-                defaults: new { controller = "Vindorel",action = "Index",id = UrlParameter.Optional }
+                defaults: new { controller = "Index",action = "Index",id = UrlParameter.Optional }
                 );
         }
     }

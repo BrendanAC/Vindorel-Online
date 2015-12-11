@@ -743,11 +743,13 @@ body {
 
 .formismail {
   background-color: #050404;
+  box-shadow: black 1px 1px 3px 0px, white 0px 0px 6px 0px;
   color: #f3f3f3;
 }
 
 .button4 {
   background-color: black;
+  box-shadow: black 0px 0px 6px 0px;
   -webkit-transition: background-color 400ms ease;
   transition: background-color 400ms ease;
 }
@@ -760,12 +762,31 @@ body {
   margin-right: 68px;
   padding-right: 7px;
   background-color: black;
+  box-shadow: black 0px 0px 6px 0px;
   -webkit-transition: background-color 400ms ease;
   transition: background-color 400ms ease;
 }
 
 .registerbutton:hover {
   background-color: #be450b;
+}
+
+.validatemessage {
+  height: 50px;
+  margin-top: 1px;
+  margin-right: 425px;
+  margin-left: 446px;
+  font-family: Baumans, sans-serif;
+  color: #fce700;
+  text-shadow: black 0px -1px 6px;
+}
+
+.validate {
+  border-style: none;
+  opacity: 1;
+  font-family: Baumans, sans-serif;
+  color: rgba(240, 255, 240, 0.98);
+  text-shadow: black 1px 1px 6px;
 }
 
 html.w-mod-js *[data-ix="onload"] {
