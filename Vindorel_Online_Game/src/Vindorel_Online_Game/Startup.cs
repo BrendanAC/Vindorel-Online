@@ -11,7 +11,7 @@ using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
-using Microsoft.Framework.Runtime;
+using Microsoft.Dnx.Runtime;
 using Vindorel_Online_Game.Models;
 using Microsoft.Data.Entity;
 
@@ -19,15 +19,17 @@ namespace Vindorel_Online_Game
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
+        public Startup(IApplicationEnvironment appEnv)
         {
             // Setup configuration sources.
-            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
-                .AddJsonFile("config.json")
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(appEnv.ApplicationBasePath)
+            .AddJsonFile("config.json")
+            .AddEnvironmentVariables();
+   
+                Configuration = builder.Build();
 
-          
+
 
         }
 
@@ -58,13 +60,13 @@ namespace Vindorel_Online_Game
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage(ErrorPageOptions.ShowAll);
+                app.UseDeveloperExceptionPage();
             }
             else
             {
                 // Add Error handling middleware which catches all application specific errors and
                 // send the request to the following path or controller action.
-                app.UseErrorHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error");
             }
 
             // Add static files to the request pipeline.

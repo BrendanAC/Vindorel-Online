@@ -112,7 +112,7 @@ namespace Vindorel_Online_Game.Models
                            Level = 6
                        }
                      );
-                    context.Savechanges();
+                    context.SaveChanges();
                 }
             }
         }
