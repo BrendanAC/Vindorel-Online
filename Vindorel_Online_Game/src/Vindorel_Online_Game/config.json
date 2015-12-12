@@ -1,9 +1,0 @@
-{
-
-  "EntityFramework": {
-    "WorldContext": {
-      "DataStore": "EntityFramework.SqlServer",
-      "ConnectionString": "Server=.\\SQLEXPRESS;Database=Blogging;integrated security=True;"
-    }
-  }
-}
