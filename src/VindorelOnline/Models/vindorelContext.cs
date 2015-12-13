@@ -5,10 +5,6 @@ namespace VindorelOnline.Models
 {
     public partial class vindorelContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            options.UseSqlServer(@"Server=Can;Database=vindorel;Trusted_Connection=True;");
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

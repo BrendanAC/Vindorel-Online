@@ -8,6 +8,9 @@ using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
+using VindorelOnline.Models;
+using Microsoft.Data.Entity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace VindorelOnline
 {
@@ -26,8 +29,13 @@ namespace VindorelOnline
         public IConfigurationRoot Configuration { get; set; }
 
         // This method gets called by the runtime.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection services)
         {
+
+            var connection = @"Server=Can;Database=vindorel;Trusted_Connection=True;";
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<vindorelContext>(options => options.UseSqlServer(connection));
             // Add MVC services to the services container.
             services.AddMvc();
 
