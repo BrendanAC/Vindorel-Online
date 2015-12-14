@@ -1,104 +1,52 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model VindorelOnline.Models.UserAccounts
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+    ViewBag.Title = "Welcome To Vindorel";
 }
-
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/ASP-NET-Banners-01.png" alt="ASP.NET" class="img-responsive" />
-            <div class="container">
-                <div class="carousel-caption">
-                    <p>
-                        Learn how to build ASP.NET apps that can run anywhere.
-                        <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                            Learn More
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/Banner-02-VS.png" alt="Visual Studio" class="img-responsive" />
-            <div class="container">
-                <div class="carousel-caption">
-                    <p>
-                        There are powerful new features in Visual Studio for building modern web apps.
-                        <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                            Learn More
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/ASP-NET-Banners-02.png" alt="Package Management" class="img-responsive" />
-            <div class="container">
-                <div class="carousel-caption">
-                    <p>
-                        Bring in libraries from NuGet, Bower, and npm, and automate tasks using Grunt or Gulp.
-                        <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                            Learn More
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/Banner-01-Azure.png" alt="Microsoft Azure" class="img-responsive" />
-            <div class="container">
-                <div class="carousel-caption">
-                    <p>
-                        Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                        <a class="btn btn-default btn-default" href="http://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                            Learn More
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET 5 (MVC 6)</li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=518007">Gulp</a> and <a href="http://go.microsoft.com/fwlink/?LinkId=518004">Bower</a> for managing client-side resources</li>
-            <li>Theming using <a href="http://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>New concepts</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of ASP.NET 5</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkId=518008">Fundamentals in ASP.NET 5</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517849">Client-Side Development using npm, Bower and Gulp</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517850">Develop on different platforms</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Customize app</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=398600">Add Controllers and Views</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=398602">Add Data using EntityFramework</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=398603">Add Authentication using Identity</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517848">Manage client-side packages using Bower/ Gulp</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Deploy</h2>
-        <ul>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517851">Run your app locally</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517852">Run your app on .NET Core</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=517853">Run commands in your app</a></li>
-            <li><a href="http://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
-    </div>
-</div>
+<!DOCTYPE html>
+<html data-wf-site="5664718fcdf237d35fd4534f" data-wf-page="5664718fcdf237d35fd45350" lang="tur">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome To Vindorel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Webflow">
+        <link rel="stylesheet" href="~/css/normalize.css" />
+        <link rel="stylesheet" href="~/css/webflow.css" />
+        <link rel="stylesheet" href="~/css/vindoreltest.webflow.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+    <script>
+    WebFont.load({
+      google: {
+        families: ["Baumans:regular"]
+      }
+    });
+    </script>
+    <script type="text/javascript" src="~/js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
+    <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+</head>
+<body class="index">
+  <div class="w-section upper">
+    <div class="w-clearfix header">
+      <h1 data-ix="onload" class="vindorelh1">VİNDOREL ONLİNE</h1>
+      <h2 data-ix="bulanik" class="midheadline">Courage Must Be Earned</h2><img width="120" height="400" src="~/images/clipart-celtic-sword-silhouette-by-rones-256x256-a78e.png" data-ix="caprazsol" class="sw1"><img width="120" height="400" src="~/images/clipart-celtic-sword-silhouette-by-rones-256x256-a78e.png" data-ix="caprazsag" class="sw2"><a href="#" data-ix="buttonplay" class="w-button playbutton">PLAY NOW</a>
+	  </div>
+ </div>
+  <div class="w-form form-wrap">
+     <form asp-controller="Home" asp-action="Login" id="node" class="form2" name="email-form" method="post"role="form">
+      <label asp-for="LoginMail">Email:</label>
+      <input asp-for="LoginMail" id="name" type="text" placeholder="Email" name="name" data-name="Name" class="w-input">
+      <label asp-for="LoginPassword">Password</label>
+      <input asp-for="LoginPassword" id="email" type="password" placeholder="Password" name="email" data-name="Email" required="required" class="w-input"><a class="w-button register" asp-controller="Register" asp-action="Register">Register</a>
+      <input type="submit" value="Login" class="w-button logintemp">
+    </form>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="~/js/webflow.js"></script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

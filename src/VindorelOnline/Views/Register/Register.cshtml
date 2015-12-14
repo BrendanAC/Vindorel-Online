@@ -1,0 +1,151 @@
+﻿@model VindorelOnline.Models.UserAccounts
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+    ViewBag.Title = "Register To Vindorel";
+}
+<!DOCTYPE html>
+<html data-wf-site="5664718fcdf237d35fd4534f" data-wf-page="56674863acde993364d49858" lang="tur">
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Webflow">
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/normalize.css" />
+        <link rel="stylesheet" href="~/css/webflow.css" />
+        <link rel="stylesheet" href="~/css/vindoreltest.webflow.css"/>
+    </environment>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+    <script>
+    WebFont.load({
+      google: {
+        families: ["Baumans:regular"]
+      }
+    });
+    </script>
+    <script type="text/javascript" src="~/js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
+    <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+</head>
+<body data-ix="ekranyukleme" class="body2">
+    <div class="w-form form5">
+        <form asp-controller="Register" asp-action="Register" id="email-form" name="email-form" method="post" class="form78" role="form">
+                <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+                <label for="AccountName">Login:</label>
+                <input asp-for="AccountName" id="name" type="text" placeholder="Enter your login id" class="w-input form4">
+                <span asp-validation-for="AccountName" class="text-danger"></span>
+                <label for="LoginPassword">Password:</label>
+                <input asp-for="LoginPassword" type="password" placeholder="Password" required="required" class="w-input form4">
+                <span asp-validation-for="LoginPassword" class="text-danger"></span>
+                <label for="LoginMail">Email Address:</label>
+                <input asp-for="LoginMail" type="email" placeholder="Enter your email address" required="required" class="w-input form4">
+                <span asp-validation-for="LoginMail" class="text-danger"></span>
+                <div class="w-radio w-clearfix radio">   
+                    <span asp-validation-for="UserRace" class="text-danger"></span>
+                    <input asp-for="UserRace" type="radio" value="Orc" class="w-radio-input chooser">
+                    <label asp-for="UserRace" class="w-form-label">Orc</label>
+                </div>
+                <div class="w-radio w-clearfix radio">
+                    <input asp-for="UserRace" type="radio" value="Human" required="required" class="w-radio-input chooser" />
+                    <label asp-for="UserRace" class="w-form-label">Human</label>
+                </div>
+                <label>Choose a job:</label>
+                <span asp-validation-for="UserJob" class="text-danger"></span>
+               <div class="w-radio w-clearfix">
+                <input asp-for="UserJob" type="radio" value="Farmer" required="required" class="w-radio-input" />
+                <label asp-for="UserJob" class="w-form-label">Farmer</label>
+               </div>
+               <div class="w-radio w-clearfix">
+                <input asp-for="UserJob" type="radio" value="Miner" required="required" class="w-radio-input" />
+                <label asp-for="UserJob" class="w-form-label">Miner</label>
+                </div>
+                <div class="w-radio w-clearfix">
+                <input asp-for="UserJob" type="radio" value="Warrior" required="required" class="w-radio-input" />
+                <label asp-for="UserJob" class="w-form-label">Warrior</label>
+                </div>
+                <div class="w-radio w-clearfix">
+                <input asp-for="UserJob" type="radio" value="Monk" required="required" class="w-radio-input" />
+                <label asp-for="UserJob" class="w-form-label">Monk</label>
+                </div>
+                <div class="w-radio w-clearfix">
+                <input asp-for="UserJob" type="radio" value="Builder" required="required" class="w-radio-input" />
+                <label asp-for="UserJob" class="w-form-label">Builder</label>
+                </div>
+                <div class="w-radio w-clearfix">
+                <input asp-for="UserJob" type="radio" value="Engineer" required="required" class="w-radio-input" />
+                <label asp-for="UserJob" class="w-form-label">Engineer</label>
+                </div>
+                <input type="submit" value="Register" data-wait="Please wait..." class="w-button login">
+</form>
+        </div>
+    <div class="divright"></div>
+    <div class="w-row collumns">
+        <div class="w-col w-col-4 collumn a"></div>
+        <div class="w-col w-col-4 collumn">
+            <h1 class="racehead">Races</h1>
+            <p class="p">
+                Lorem
+                <rteselectionmarker></rteselectionmarker> ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+            </p><img width="55" src="~/images/clenched.png" class="img2 bow">
+            <p class="p p1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p><img width="51" src="~/images/sword9.png" class="img2">
+        </div>
+        <div class="w-col w-col-4 collumn">
+            <h1 class="racehead">Jobs</h1>
+            <ul class="w-list-unstyled list list2">
+                <li>
+                    <img src="~/images/dig.png">
+                </li>
+                <li>
+                    <img src="~/images/christian16.png">
+                </li>
+                <li>
+                    <img src="~/images/ax3.png">
+                </li>
+            </ul>
+            <ul class="w-list-unstyled list">
+                <li class="l1">
+                    <p class="par l3">MINER</p>
+                    <p class="par l4">
+                        MONK
+                        <br><span class="prostext">+Culture</span>
+                    </p>
+                    <p class="par">FARMER</p>
+                    <p class="par l7">
+                        WARRIOR
+                        <br><span class="prostext">+Military Train Speed</span>
+                    </p>
+                    <p class="par">
+                        FARMER
+                        <br><span class="prostext">+Food and Population</span>
+                    </p>
+                    <p class="par l3">
+                        MINER
+                        <br><span class="prostext">+Mine Business</span>
+                    </p><img src="~/images/shovel26.png">
+                </li>
+                <li>
+                    <img src="~/images/settings48.png">
+                    <p class="par l1">
+                        ENGINEER
+                        <br><span class="prostext">+Research Speed</span>
+                    </p>
+                </li>
+                <li>
+                    <img src="~/images/medieval18.png">
+                    <p class="par l2">
+                        BUILDER
+                        <br><span class="prostext">+Construct Speed</span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/webflow.js"></script>
+    <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

@@ -12,7 +12,6 @@ namespace VindorelOnline.Models
         }
 
         public int TownID { get; set; }
-        public int? ArmyID { get; set; }
         public int Coordinate_X { get; set; }
         public int Coordinate_Y { get; set; }
         public DateTime? LastUPDATE { get; set; }
@@ -22,8 +21,6 @@ namespace VindorelOnline.Models
         public int PointCulture { get; set; }
         public int PointExp { get; set; }
         public int PointKarma { get; set; }
-        public int? PopulationID { get; set; }
-        public int? TechID { get; set; }
         public int TownFOOD { get; set; }
         public int? TownFOOD_perHour { get; set; }
         public int TownGOLD { get; set; }
@@ -33,7 +30,6 @@ namespace VindorelOnline.Models
         public string TownName { get; set; }
         public int TownWOOD { get; set; }
         public int? TownWOOD_perHour { get; set; }
-        public int? TradesID { get; set; }
         public int UserID { get; set; }
 
         public virtual ICollection<TownBuildings> TownBuildings { get; set; }
