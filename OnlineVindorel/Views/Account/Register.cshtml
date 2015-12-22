@@ -1,0 +1,130 @@
+﻿@model OnlineVindorel.ViewModels.Account.RegisterViewModel
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+@{
+
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Dec 18 2015 17:47:51 GMT+0000 (UTC) -->
+<html data-wf-site="5664718fcdf237d35fd4534f" data-wf-page="56674863acde993364d49858" lang="tur">
+<head>
+  <meta charset="utf-8">
+  <title>Register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <link rel="stylesheet" type="text/css" href="~/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="~/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="~/css/vindoreltest.webflow.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Baumans:regular"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="~/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
+  <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+</head>
+<body data-ix="ekranyukleme" class="w-clearfix body2">
+  <div class="w-form form5">
+      <form asp-controller="Account" asp-action="Register" method="post" class="form78" role="form">
+              <label asp-for="Username" class="loginfield">Login:</label>
+              <input asp-for="Username" type="text" placeholder="Enter your login id" class="w-input form4">
+              <span asp-validation-for="Username" class="text-danger"></span>
+              <label asp-for="Password">Password:</label>
+              <input asp-for="Password" type="password" placeholder="Password" class="w-input form4">
+              <span asp-validation-for="Password" class="text-danger"></span>
+              <label asp-for="ConfirmPassword">Confirmed Password:</label>
+              <input asp-for="ConfirmPassword" type="password" placeholder="Repeat your password" class="w-input form4">
+              <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+              <label asp-for="Email" class="email">Email:</label>
+              <input asp-for="Email" type="email" placeholder="Email" class="w-input form4">
+              <span asp-validation-for="Email" class="text-danger"></span>
+              <span asp-validation-for="God" class="text-danger"></span>
+              <select asp-for="God" class="w-select godselect">
+                  <option value="">Select God</option>
+                  <option value="Fus">Fus</option>
+                  <option value="Teliros">Teliros</option>
+                  <option value="Sopyak">Sopyak</option>
+                  <option value="Xaraxel">Xaraxel</option>
+                  <option value="Handor">Handor</option>
+                  <option value="Zean">Zean</option>
+                  <option value="Atheist">Atheist</option>
+              </select>
+          <input type="submit" value="Register" class="w-button login">
+          </form>
+</div>
+  <a href="#" data-ix="godeffect-7" class="w-button godselect1 five">
+    <br>
+    <br>e</a>
+  <a href="#" data-ix="godeffect" class="w-button godselect1 alnor">
+    <br>
+    <br>q</a>
+  <a href="#" data-ix="godeffect-3" class="w-button godselect1">
+    <br>
+    <br>s</a>
+  <a href="#" data-ix="godeffect-4" class="w-button godselect1 two">
+    <br>
+    <br>t</a>
+  <a href="#" data-ix="godeffect-6" class="w-button godselect1 four">
+    <br>
+    <br>x</a>
+  <a href="#" data-ix="godeffect-5" class="w-button godselect1 three">
+    <br>
+    <br>o</a>
+  <a href="#" data-ix="godeffect-2" class="w-button godselect1 one">
+    <br>
+    <br>f</a>
+  <div class="w-section rightsection">
+    <div class="w-container contalnor">
+      <h1 class="godtext">ALNOR</h1>
+      <div class="zullatext">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+      </div>
+    </div>
+    <div class="w-container conta">
+      <h1 class="godtext">GOD1</h1>
+      <div class="zullatext">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+      </div>
+    </div>
+    <div class="w-container contb">
+      <h1 class="godtext">GOD2</h1>
+      <div class="zullatext">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+      </div>
+    </div>
+    <div class="w-container contc">
+      <h1 class="godtext">GOD3</h1>
+      <div class="zullatext">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+      </div>
+    </div>
+    <div class="w-container contd">
+      <h1 class="godtext">GOD4</h1>
+      <div class="zullatext">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+      </div>
+    </div>
+    <div class="w-container conte">
+      <h1 class="godtext">GOD5</h1>
+      <div class="zullatext">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+      </div>
+    </div>
+    <div class="w-container contf">
+      <h1 class="godtext">GOD6</h1>
+      <div class="zullatext">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="~/js/webflow.js"></script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

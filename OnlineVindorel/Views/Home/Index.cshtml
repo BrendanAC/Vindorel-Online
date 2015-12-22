@@ -1,0 +1,61 @@
+﻿@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+@model LoginViewModel
+@inject SignInManager<Account> SignInManager
+    @{
+
+    Layout=null;
+
+    }
+
+    <!DOCTYPE html>
+    <!-- This site was created in Webflow. http://www.webflow.com-->
+    <!-- Last Published: Fri Dec 18 2015 17:47:51 GMT+0000 (UTC) -->
+    <html data-wf-site="5664718fcdf237d35fd4534f" data-wf-page="5664718fcdf237d35fd45350" lang="tur">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Vindorel is The Multiplayer Town and Lord management game.The people have their own hero to climb the ladder of courage.There is a lot of land to conquer and lands to loose.The power inside you will light your path trough the darkness.Or Will you be the darkness itself. Can you fight against yourself?.This world is Cruel and bloody.Choose your side to fight. Conquer the World which noone have enough courage to see.">
+        <meta name="keywords" content="role playing game,game,strategy game,mmorts,town management,town,hero,heroes,battle,town battle,orc,human,warrior,upgrades,farm,iron,wood,food,populations,battle town,clash of towns,World of Vindorel,WoV,choose your side,battle arenas,Conquer,karma,darkness,races">
+        <title>@ViewData["Title"]</title>
+
+        <environment names="Development">
+            <link rel="stylesheet" type="text/css" href="~/css/normalize.css">
+            <link rel="stylesheet" type="text/css" href="~/css/webflow.css">
+            <link rel="stylesheet" type="text/css" href="~/css/vindoreltest.webflow.css">
+        </environment>
+        <environment names="Staging,Production">
+            <link rel="stylesheet" href="~/css/vindoreltest.webflow.css" asp-append-version="true" />
+        </environment>
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+        <script>
+            WebFont.load({
+                google: {
+                    families: ["Baumans:regular"]
+                }
+            });
+        </script>
+        <script type="text/javascript" src="~/js/modernizr.js"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
+        <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+    </head>
+    <body class="index">
+        <div class="w-section upper">
+            <div class="w-clearfix header">
+                <h1 data-ix="onload" class="vindorelh1">VİNDOREL ONLİNE</h1>
+                <h2 data-ix="bulanik" class="midheadline">Courage Must Be Earned</h2><img width="120" height="400" src="~/images/clipart-celtic-sword-silhouette-by-rones-256x256-a78e_1.png" data-ix="caprazsol" class="sw1"><img width="120" height="400" src="~/images/clipart-celtic-sword-silhouette-by-rones-256x256-a78e_1.png" data-ix="caprazsag" class="sw2"><a href="#" data-ix="buttonplay" class="w-button playbutton">PLAY NOW</a>
+            </div>
+        </div>
+        <div class="w-form form-wrap">
+            <form asp-controller="Account" asp-action="Login" method="post" class="form2">
+                <label asp-for="Username">Email:</label>
+                <input asp-for="Username" placeholder="Email" class="w-input">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" placeholder="Password" class="w-input">
+                <input type="submit" value="Login" class="w-button logintemp"><a href="/Account/Register/" class="w-button register">Register</a>
+            </form>
+        </div>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="~/js/webflow.js"></script>
+        <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+    </body>
+</html>
