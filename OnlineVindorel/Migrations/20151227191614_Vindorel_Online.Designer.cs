@@ -8,7 +8,7 @@ using OnlineVindorel.Models;
 namespace OnlineVindorel.Migrations
 {
     [DbContext(typeof(VindorelDbContext))]
-    [Migration("20151227182509_Vindorel_Online")]
+    [Migration("20151227191614_Vindorel_Online")]
     partial class Vindorel_Online
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

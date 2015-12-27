@@ -104,6 +104,8 @@ namespace OnlineVindorel
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
             await Default.InitializeDataAsync();
 
         }
