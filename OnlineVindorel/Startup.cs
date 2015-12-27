@@ -46,7 +46,8 @@ namespace OnlineVindorel
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
 
 
-            services.AddIdentity<Account, IdentityRole>()
+
+          services.AddIdentity<Account, IdentityRole>()
                 .AddEntityFrameworkStores<VindorelDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -55,11 +56,14 @@ namespace OnlineVindorel
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddTransient<dbInıt>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+            dbInıt Default)
         {
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -87,7 +91,7 @@ namespace OnlineVindorel
             }
 
             app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
-
+            
             app.UseStaticFiles();
 
             app.UseIdentity();
@@ -100,6 +104,8 @@ namespace OnlineVindorel
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            await Default.InitializeDataAsync();
+
         }
 
         // Entry point for the application.

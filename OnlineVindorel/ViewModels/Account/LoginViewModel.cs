@@ -8,7 +8,7 @@ namespace OnlineVindorel.ViewModels.Account
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Enter Your Username!")]
         public string Username { get; set; }
 
         [Required]

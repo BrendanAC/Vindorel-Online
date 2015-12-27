@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OnlineVindorel", "OnlineVindorel\OnlineVindorel.xproj", "{451FD5EC-BCFA-44C2-B6EF-AB58CEE4810F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerScheduler", "ServerScheduler\ServerScheduler.csproj", "{E4F29D45-01A7-4EF1-BE14-275EB294FA76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{451FD5EC-BCFA-44C2-B6EF-AB58CEE4810F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{451FD5EC-BCFA-44C2-B6EF-AB58CEE4810F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{451FD5EC-BCFA-44C2-B6EF-AB58CEE4810F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F29D45-01A7-4EF1-BE14-275EB294FA76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F29D45-01A7-4EF1-BE14-275EB294FA76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F29D45-01A7-4EF1-BE14-275EB294FA76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F29D45-01A7-4EF1-BE14-275EB294FA76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

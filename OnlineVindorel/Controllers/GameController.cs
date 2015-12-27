@@ -9,6 +9,8 @@ using OnlineVindorel.ViewModels.Account;
 using System.Security.Claims;
 using System.Collections.Generic;
 using OnlineVindorel.GameEngine;
+using System;
+using Microsoft.AspNet.Authorization;
 
 namespace OnlineVindorel.Controllers
 {
@@ -24,67 +26,128 @@ namespace OnlineVindorel.Controllers
         }
 
         // GET: Game
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-            var Player = await _userManager.FindByIdAsync(User.GetUserId());
+           var Player = await _userManager.FindByIdAsync(User.GetUserId());
            var Set =  _context.UserGameSettings.LastOrDefault(x => x.UserId == Player.Id);
-           
-
-            if(Set.Race == null || Set.Job == null)
-            {
-
-                return View("Starter");
-
-            }
-            else
+            var count = _context.Towns.LastOrDefault(x => x.UserId == Player.Id);
+            if(Player.Towns.Count > 0)
             {
                 return View(Player);
             }
+            else
+            {
+                var GameEngine = new CreateNewTown();
+                GameEngine.CreateTown(Player, Set);
+                await _context.SaveChangesAsync();
+                return View(Player);
+            }
 
+
+            
         }
+        [Authorize]
         public async Task<IActionResult> Starter(UserGameSettings Starter)
         {
             var Player = await _userManager.FindByIdAsync(User.GetUserId());
             var Set = await _context.UserGameSettings.LastOrDefaultAsync(x => x.UserId == Player.Id);
             var GameEngine = new CreateNewTown();
-
-            Set.Job = Starter.Job;
-            Set.Race = Starter.Race;
-
             GameEngine.CreateTown(Player, Set);
-
             await _context.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
-        // GET: Game/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Buildings()
         {
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
+            UpdateAll Engine = new UpdateAll();
+            var Player = await _userManager.FindByIdAsync(User.GetUserId());
+            var Set = await _context.UserGameSettings.LastOrDefaultAsync(x => x.UserId == User.GetUserId());
+            var Town = await _context.Towns.LastOrDefaultAsync(x => x.UserId == User.GetUserId());
+            UpgradeSystem model = new UpgradeSystem();
 
-            Account account = await _context.Account.SingleAsync(m => m.Id == id);
-            if (account == null)
-            {
-                return HttpNotFound();
-            }
+            Engine.UpdateResource(Town);
+            Engine.UpdateBuildings(Town);
+            model.BuildingPage(Town);
 
-            return View(account);
+            await _context.SaveChangesAsync();
+                return View(model);
+
         }
 
- 
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Upgrade(UpgradeSystem selected)
+        {
+            UpdateAll upengine = new UpdateAll();
+            var Town = await _context.Towns.LastOrDefaultAsync(x => x.UserId == User.GetUserId());
+            var Player = await _userManager.FindByIdAsync(User.GetUserId());
+            UpgradeSystem buildings= new UpgradeSystem(_context, Player);
+            buildings.BuildingPage(Town);
+            var production = buildings.Upgrades.ElementAt(selected.UpgradeIndex);
+            upengine.UpdateResource(Town);
+            upengine.UpdateBuildings(Town);
+            await _context.SaveChangesAsync();
+            if (ModelState.IsValid && production.Cost_Iron < Town.TownIRON
+                && production.Cost_Meat < Town.TownMEAT && production.Cost_Wheat 
+                < Town.TownWHEAT && production.Cost_Wood < Town.TownWOOD )
+            {
+                Town.TownWHEAT = Town.TownWHEAT - production.Cost_Wheat;
+                Town.TownMEAT = Town.TownMEAT - production.Cost_Meat;
+                Town.TownIRON = Town.TownIRON - production.Cost_Iron;
+                Town.TownWOOD = Town.TownWOOD - production.Cost_Wood;
+
+                UpgradeSystem Engine = new UpgradeSystem(_context, Player);
+                UpgradeQueue NewUpgrade = new UpgradeQueue();
+
+                NewUpgrade.BuildingINDEX = production.index;
+                NewUpgrade.TownID = Town.TownId;
+                
+                NewUpgrade.ProductionTime = DateTime.Now.AddSeconds(production.Buildtime);
+
+                _context.upgradeQueue.Add(NewUpgrade);
+                
+                await _context.SaveChangesAsync();
+                return View("Buildings",buildings);
+            }
+            else
+            {
+                ModelState.AddModelError("", "Not Enough Resources");
+                return View("Buildings");
+            }
+        }
+        [Authorize]
+        public async Task<IActionResult> MyAccount()
+        {
 
 
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> NameUpdate(string newname)
+        {
 
+            var Town = await _context.Towns.LastOrDefaultAsync(x => x.UserId == User.GetUserId());
 
+            Town.TownName = newname;
+            await _context.SaveChangesAsync();
+            return View("MyAccount");
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> Delete(string name)
+        {
 
-
-
-
-        // GET: Game/Delete/5
-
-
+            var acc = await _userManager.FindByNameAsync(name);
+            await _userManager.DeleteAsync(acc);
+            return View();
+        }
+        // GET: Admin
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AdminPanel()
+        {
+            return View();
+        }
 
     }
 }

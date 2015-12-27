@@ -41,7 +41,7 @@ body {
 
 .footer {
   height: 20px;
-  margin-top: 439px;
+  margin-top: 537px;
   margin-left: 0px;
   padding-top: 0px;
   padding-right: 0px;
@@ -90,6 +90,7 @@ body {
 
 .upper {
   display: block;
+  width: 1200px;
   height: 400px;
   margin: auto;
   padding: 0px 112px 106px 200px;
@@ -120,6 +121,10 @@ body {
 }
 
 .vindorelh1 {
+  position: fixed;
+  left: 0px;
+  top: 30px;
+  right: 0px;
   height: auto;
   margin: auto;
   padding-top: 1px;
@@ -139,7 +144,10 @@ body {
 }
 
 .midheadline {
-  position: static;
+  position: fixed;
+  left: 0px;
+  top: 98px;
+  right: 0px;
   margin: auto;
   -webkit-transition: color 750ms ease;
   transition: color 750ms ease;
@@ -161,10 +169,15 @@ body {
 }
 
 .sw1 {
+  position: fixed;
+  left: 856px;
+  top: 50px;
   display: block;
   overflow-x: visible;
   overflow-y: visible;
-  margin: auto 220px auto auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
   padding-right: 0px;
   padding-left: 0px;
   float: right;
@@ -172,23 +185,30 @@ body {
 }
 
 .sw2 {
+  position: fixed;
+  left: 366px;
+  top: 51px;
+  right: 194px;
   display: block;
   overflow-x: visible;
   overflow-y: visible;
-  margin: auto auto auto 220px;
+  margin-top: auto;
+  margin-right: auto;
+  margin-bottom: auto;
   float: left;
   background-color: transparent;
   opacity: 1;
 }
 
 .playbutton {
-  position: static;
-  top: 0px;
+  position: fixed;
+  left: 480px;
+  top: 227px;
   right: 480px;
   display: block;
   width: 150px;
   height: auto;
-  margin: 113px auto auto;
+  margin: auto;
   padding-right: 14px;
   padding-bottom: 12px;
   padding-left: 16px;
@@ -509,9 +529,11 @@ body {
 
 .login {
   position: fixed;
-  left: 105px;
-  top: 486px;
+  left: 101px;
+  top: 517px;
   right: 36px;
+  overflow-x: visible;
+  overflow-y: visible;
   margin: auto;
   padding-bottom: 10px;
   background-color: rgba(49, 44, 44, 0.98);
@@ -718,11 +740,11 @@ body {
 }
 
 .form78 {
-  position: static;
-  top: -8px;
+  position: fixed;
+  top: 15px;
   display: block;
   width: 250px;
-  height: 500px;
+  height: 550px;
   margin-left: 26px;
   padding-left: 30px;
   background-color: transparent;
@@ -867,10 +889,10 @@ body {
 }
 
 .form-wrap {
-  position: static;
-  left: 68px;
-  top: 220px;
-  display: none;
+  position: fixed;
+  left: -37px;
+  top: 389px;
+  display: block;
   width: 320px;
   height: 150px;
   margin: 87px 395px -147px 581px;
@@ -914,17 +936,18 @@ body {
 .leftsection {
   display: block;
   width: 250px;
-  height: 555px;
+  height: 540px;
   margin-top: auto;
   float: left;
   clear: left;
   background-color: #818888;
   background-image: url('../images/1366-768-328332.jpg');
-  background-position: -728px 0px;
+  background-position: -714px 0px;
   background-size: cover;
 }
 
 .headersection {
+  position: static;
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -936,7 +959,7 @@ body {
 .right2section {
   display: block;
   width: 250px;
-  height: 555px;
+  height: 540px;
   float: right;
   clear: right;
   background-color: #818888;
@@ -960,12 +983,17 @@ body {
   overflow-x: visible;
   overflow-y: visible;
   width: 858px;
-  height: 525px;
+  height: 510px;
   margin-top: auto;
   margin-right: 250px;
   margin-left: 250px;
   background-color: #88878d;
+  background-image: url('../images/bookpaper.jpg');
+  background-position: -6px 0px;
+  background-size: cover;
+  background-attachment: scroll;
   box-shadow: black 0px 0px 6px 0px;
+  font-family: Baumans, sans-serif;
   color: #e2d2d2;
 }
 
@@ -1017,15 +1045,21 @@ body {
 
 .rightres {
   position: absolute;
-  left: 251px;
+  left: 254px;
+  top: 4px;
   display: block;
   width: 540px;
-  height: 75px;
+  height: 50px;
   max-width: none;
   margin-right: auto;
   margin-left: auto;
   float: right;
   background-color: #bebebe;
+  font-family: Baumans, sans-serif;
+  color: #a81616;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
 }
 
 .sword {
@@ -1067,6 +1101,10 @@ body {
 }
 
 .signout {
+  position: fixed;
+  left: 1000px;
+  top: 2px;
+  max-width: none;
   margin-left: 36px;
 }
 
@@ -1132,39 +1170,39 @@ body {
 .cultureppl {
   position: fixed;
   left: 673px;
-  top: 45px;
+  top: 44px;
 }
 
 .restext {
   position: fixed;
-  left: 286px;
+  left: 283px;
   top: 41px;
   width: 100px;
   margin-left: auto;
   font-family: Baumans, sans-serif;
-  color: #090808;
+  color: #147010;
   font-style: normal;
   font-weight: 800;
 }
 
 .breadtext {
   position: fixed;
-  left: 286px;
+  left: 283px;
   top: 7px;
   width: 100px;
   font-family: Baumans, sans-serif;
-  color: black;
+  color: #8b770b;
   font-weight: 800;
 }
 
 .meattext {
   position: fixed;
   left: 414px;
-  top: 4px;
+  top: 7px;
   right: 1px;
   width: 150px;
   font-family: Baumans, sans-serif;
-  color: rgba(0, 0, 0, 0.98);
+  color: rgba(228, 29, 29, 0.98);
   font-weight: 800;
 }
 
@@ -1174,7 +1212,7 @@ body {
   top: 41px;
   width: 150px;
   font-family: Baumans, sans-serif;
-  color: black;
+  color: #353030;
   font-weight: 800;
 }
 
@@ -1277,10 +1315,11 @@ body {
 
 .godselect {
   position: fixed;
-  top: 429px;
+  left: 287px;
+  top: 441px;
   width: 120px;
   height: 40px;
-  background-color: #bbb4b4;
+  background-color: #222121;
   background-image: url('../images/1366-768-117065.jpg');
   background-position: 0px 0px;
   background-size: 683px;
@@ -1496,8 +1535,212 @@ body {
 
 .openning {
   position: fixed;
+  left: 287px;
+  top: 200px;
+  width: 390px;
+  font-family: Baumans, sans-serif;
+  color: #3d2f2f;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.openning.right {
+  left: 699px;
+  top: 201px;
+}
+
+.buildingrow {
+  width: 405px;
+  height: 65px;
+  margin-top: 18px;
+  margin-left: 21px;
+  float: left;
+  clear: none;
+  background-color: #44494d;
+  box-shadow: #050505 0px 0px 6px 0px inset;
+}
+
+.textblock {
+  position: static;
+  height: 50px;
+  margin-top: -4px;
+  font-size: 12px;
+}
+
+.col2 {
+  position: static;
+  height: 20px;
+}
+
+.townh {
+  margin-top: auto;
+  margin-bottom: auto;
+  color: #d3e3d3;
+}
+
+.upgrade {
+  position: static;
+  width: 89px;
+  height: 62px;
+  margin-top: 2px;
+  background-color: #4b4d4e;
+  box-shadow: #1b1b1b 0px 0px 6px 0px;
+  color: #b2b0bb;
+  font-weight: 600;
+  text-shadow: black 0px -1px 27px;
+}
+
+.income {
+  color: #23e423;
+}
+
+.poptrade {
+  position: fixed;
+  left: 694px;
+  width: 100px;
+  height: 20px;
+  font-family: Baumans, sans-serif;
+  color: #161616;
+  font-weight: 700;
+}
+
+.popmilitary {
+  position: fixed;
+  left: 694px;
+  top: 21px;
+  width: 100px;
+  height: 20px;
+  font-family: Baumans, sans-serif;
+  color: #090808;
+  font-weight: 700;
+}
+
+.popcultural {
+  position: fixed;
+  left: 692px;
+  top: 40px;
+  width: 100px;
+  height: 20px;
+  font-family: Baumans, sans-serif;
+  color: black;
+  font-weight: 700;
+}
+
+.linkblocks {
+  position: fixed;
+  left: 1030px;
+  width: 40px;
+  height: 30px;
+}
+
+.logindesc {
+  position: fixed;
+  left: 836px;
+  top: 32px;
+  font-family: Baumans, sans-serif;
+  font-weight: 700;
+}
+
+.admin-header {
+  text-align: center;
+}
+
+.formh {
+  position: fixed;
+  top: 186px;
+  width: 200px;
+  height: 150px;
+}
+
+.delete {
+  position: fixed;
+  left: 279px;
+  top: 256px;
+  right: 4px;
+}
+
+.username {
+  position: fixed;
+  left: 273px;
+  top: 216px;
+  width: 120px;
+  background-color: #423d3d;
+  color: #f1e3e3;
+}
+
+.deleteuser {
+  position: fixed;
+  left: 257px;
+  color: #0c0b0b;
+}
+
+.formlore {
+  position: fixed;
   left: 259px;
-  width: 300px;
+  top: 226px;
+}
+
+.army {
+  position: static;
+  left: 456px;
+  top: 147px;
+  width: 550px;
+  height: 20px;
+  margin-top: 4px;
+  margin-left: 5px;
+  background-color: #91a1ad;
+}
+
+.army.players {
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+.colrwo {
+  position: static;
+  height: 20px;
+}
+
+.divblocks {
+  position: fixed;
+  left: 434px;
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 560px;
+}
+
+.exp {
+  position: fixed;
+  left: 293px;
+  top: 159px;
+  width: 200px;
+  color: black;
+  font-weight: 600;
+}
+
+.starter {
+  color: #0c0707;
+  text-align: center;
+}
+
+.changeyourname {
+  position: fixed;
+}
+
+.changingname {
+  position: fixed;
+  left: 700px;
+  top: 169px;
+  color: #111010;
+  font-weight: 400;
+}
+
+.update {
+  background-color: #1f1d1d;
+}
+
+.updatename {
+  background-color: #4f5153;
 }
 
 html.w-mod-js *[data-ix="bulanik"] {

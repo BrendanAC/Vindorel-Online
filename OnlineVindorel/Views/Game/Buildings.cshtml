@@ -1,0 +1,405 @@
+﻿@using System.Security.Claims
+@model OnlineVindorel.GameEngine.UpgradeSystem
+@{
+    VindorelDbContext _context = new VindorelDbContext();
+    var UserTown = _context.Towns.LastOrDefault(x => x.UserId == User.GetUserId());
+    var TownPop = _context.Population.LastOrDefault(x => x.TownId == UserTown.TownId);
+    var Settings = _context.UserGameSettings.LastOrDefault(x => x.UserId == User.GetUserId());
+    var query = _context.upgradeQueue.LastOrDefault(x => x.TownID == UserTown.TownId);   
+}
+<!DOCTYPE html>
+<html data-wf-site="5664718fcdf237d35fd4534f" data-wf-page="5670a3f35529a4241cd10de4" lang="tur">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Vindorel is The Multiplayer Town and Lord management game.The people have their own hero to climb the ladder of courage.There is a lot of land to conquer and lands to loose.The power inside you will light your path trough the darkness.Or Will you be the darkness itself. Can you fight against yourself?.This world is Cruel and bloody.Choose your side to fight. Conquer the World which noone have enough courage to see.">
+    <meta name="keywords" content="role playing game,game,strategy game,mmorts,town management,town,hero,heroes,battle,town battle,orc,human,warrior,upgrades,farm,iron,wood,food,populations,battle town,clash of towns,World of Vindorel,WoV,choose your side,battle arenas,Conquer,karma,darkness,races">
+    <title>@ViewData["Title"]</title>
+c
+</head>
+<body class="w-clearfix game">
+    <div class="w-section w-clearfix headersection">
+        <div class="playerresources">
+            <a href="#" class="w-inline-block">
+                <img src="~/images/mail59.png" data-ix="popu" class="messages">
+            </a>
+            <a href="#" class="w-inline-block">
+                <img src="~/images/user168.png" data-ix="popu" class="myaccount">
+            </a>
+            <a href="#" class="w-inline-block">
+                <img src="~/images/tools6.png" data-ix="popu" class="settings">
+            </a>
+            <a href="#" class="w-inline-block linkblocks">
+                <img src="~/images/sign4.png" data-ix="popu" class="signout">
+            </a>
+        </div>
+        <div class="logindesc">Welcome @User.GetUserName(). You Are in @UserTown.TownName</div>
+        <div class="rightres">
+            <img width="26" src="~/images/meat.png" class="meat">
+            <div class="meattext">Meat : @UserTown.TownMEAT</div>
+            <div class="irontext">Iron : @UserTown.TownIRON</div><img width="24" src="~/images/bread-32.png" class="bread">
+            <div class="restext">Wood :@UserTown.TownWOOD&nbsp;</div>
+            <div class="breadtext">Wheat :@UserTown.TownWHEAT</div><img width="28" src="~/images/ironicon.png" class="iron"><img width="24" src="~/images/pine-trees-icon.png" class="wood"><img width="16" src="~/images/coin_stacks_gold.png" class="traderpop">
+            <div class="poptrade">Traders:@TownPop.TraderPop</div>
+            <div class="popmilitary">Anarchists:@TownPop.AggressivePop</div>
+            <div class="popcultural">Intellectuals:@TownPop.CulturalPop</div><img width="16" src="~/images/book-open-icon.png" class="cultureppl"><img width="16" src="~/images/Fire.png" class="firedpop">
+        </div>
+        <div class="vindorel">
+            <h1 class="vin">VindorelOnline</h1><img href="Game/MyAccount" width="546" src="~/images/clipart-celtic-sword-silhouette-by-rones-256x256-a78e.png" class="sword">
+            <p class="slog">Courage Must Be Earned</p>
+        </div>
+    </div>
+    <div class="w-section right2section"></div>
+    <div class="w-section leftsection"></div>
+    <div class="w-row rowmenu">
+        <div class="w-col w-col-2 rowcollumn text">
+            <a href="/Game/Buildings" class="w-inline-block rowcollumn links">
+                <div class="menus">Buildings</div>
+            </a>
+        </div>
+        <div class="w-col w-col-2 rowcollumn text">
+            <a href="#" class="w-inline-block rowcollumn links">
+                <div class="menus">Army</div>
+            </a>
+        </div>
+        <div class="w-col w-col-2 rowcollumn text">
+            <a href="#" class="w-inline-block rowcollumn links">
+                <div class="menus">Technology</div>
+            </a>
+        </div>
+        <div class="w-col w-col-2 rowcollumn text">
+            <a href="#" class="w-inline-block rowcollumn links">
+                <div class="menus">Map</div>
+            </a>
+        </div>
+        <div class="w-col w-col-2 rowcollumn text">
+            <a href="#" class="w-inline-block rowcollumn links">
+                <div class="menus">Innhouse</div>
+            </a>
+        </div>
+        <div class="w-col w-col-2 rowcollumn text">
+            <a href="#" class="w-inline-block rowcollumn links">
+                <div class="menus">Battle</div>
+            </a>
+        </div>
+    </div>
+    <div class="w-clearfix gamewindow">
+        <span asp-validation-for="Upgrades"></span>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/monument46.png">
+            </div>
+            <div class="w-col w-col-6 col2">
+                <h5 class="townh">Town Center</h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(0).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(0).Cost_Wood Wheat:@Model.Upgrades.ElementAt(0).Cost_Wheat Meat:@Model.Upgrades.ElementAt(0).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(0).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+                @if (query.BuildingINDEX != Model.Upgrades.ElementAt(0).index)
+                {
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input asp-for="UpgradeIndex" type="hidden" value="0" />
+                     <button type="submit" value="Upgrade" a class="w-button upgrade">Upgrade</button>
+                </form>
+                }
+                else
+                {
+                    <p>In Queue</p>
+                    <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+                }
+            </div>
+        </div>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/user36.png">
+            </div>
+            <div class="w-col w-col-6">
+                <h5 class="townh">Technology Camp</h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(2).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(2).Cost_Wood Wheat: @Model.Upgrades.ElementAt(2).Cost_Wheat Meat:@Model.Upgrades.ElementAt(2).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(2).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+        @if (query.BuildingINDEX != Model.Upgrades.ElementAt(2).index)
+        {
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input asp-for="UpgradeIndex" type="hidden" value="2" />
+                    <button type="submit" value="Upgrade" a class="w-button upgrade">Upgrade</button>
+                </form>
+        }
+        else
+        {
+            <p>In Queue</p>
+                    <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+        }
+            </div>
+        </div>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/axes.png">
+            </div>
+            <div class="w-col w-col-6">
+                <h5 class="townh">WoodCutter Hut<span class="income">&nbsp;( +@UserTown.TownWOOD_perHour/h)</span></h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(10).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(10).Cost_Wood Wheat: @Model.Upgrades.ElementAt(10).Cost_Wheat Meat:@Model.Upgrades.ElementAt(10).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(10).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+                    @if (query.BuildingINDEX != Model.Upgrades.ElementAt(10).index)
+                     {
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input  asp-for="UpgradeIndex" type="hidden" value="10" />
+                    <button type="submit" value="Upgrade" class="w-button upgrade">Upgrade</button>
+                  </form>
+                    }
+                        else
+                    {
+    <p>In Queue</p>
+                    <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+}
+            </div>
+        </div>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/storage53.png">
+            </div>
+            <div class="w-col w-col-6">
+                <h5 class="townh">WareHouse</h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(4).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(4).Cost_Wood Wheat: @Model.Upgrades.ElementAt(4).Cost_Wheat Meat:@Model.Upgrades.ElementAt(4).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(4).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+                @if (query.BuildingINDEX != Model.Upgrades.ElementAt(4).index)
+                {       
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input asp-for="UpgradeIndex" type="hidden" value="4" />
+                    <button type="submit" value="Upgrade" a class="w-button upgrade">Upgrade</button>
+                </form>
+                }
+                else
+                {
+                        <p>In Queue</p>
+                        <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+                 }
+            </div>
+        </div>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/steak.png">
+            </div>
+            <div class="w-col w-col-6">
+                <h5 class="townh">Meat Camp<span class="income"> (+@UserTown.TownMeat_perHour/h)</span></h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(8).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(8).Cost_Wood Wheat: @Model.Upgrades.ElementAt(8).Cost_Wheat Meat:@Model.Upgrades.ElementAt(8).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(8).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+                @if (query.BuildingINDEX != Model.Upgrades.ElementAt(8).index)
+                {
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input asp-for="UpgradeIndex" type="hidden" value="8" />
+                    <button type="submit" value="Upgrade" name="woodcutter" class="w-button upgrade">Upgrade</button>
+               </form>
+                }
+                else
+                {
+                    <p>In Queue</p>
+                    <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+                }
+            </div>
+        </div>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/swords8.png">
+            </div>
+            <div class="w-col w-col-6">
+                <h5 class="townh">Barracks</h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(6).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(6).Cost_Wood Wheat: @Model.Upgrades.ElementAt(6).Cost_Wheat Meat:@Model.Upgrades.ElementAt(6).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(6).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+                @if (query.BuildingINDEX != Model.Upgrades.ElementAt(6).index)
+                {
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input asp-for="UpgradeIndex" type="hidden" value="6" />
+                    <button type="submit" value="Upgrade" a class="w-button upgrade">Upgrade</button> 
+                </form>
+                }
+                else
+                {
+                    <p>In Queue</p>
+                    <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+                }
+             </div>
+        </div>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/mine2.png">
+            </div>
+            <div class="w-col w-col-6">
+                <h5 class="townh">Mine <span class="income">(+@UserTown.TownIRON_perHour/h)</span></h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(9).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(9).Cost_Wood Wheat: @Model.Upgrades.ElementAt(9).Cost_Wheat Meat:@Model.Upgrades.ElementAt(9).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(9).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+                    @if (query.BuildingINDEX != Model.Upgrades.ElementAt(9).index)
+                    {
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input asp-for="UpgradeIndex" type="hidden" value="9" />
+                    <button type="submit" value="Upgrade" a class="w-button upgrade">Upgrade</button>
+                </form>
+                    }
+                    else
+                    {
+                        <p>In Queue</p>
+                        <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+                    }
+             </div>
+        </div>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/thatbyinnyu.png">
+            </div>
+            <div class="w-col w-col-6">
+                <h5 class="townh">Temple</h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(5).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(5).Cost_Wood Wheat: @Model.Upgrades.ElementAt(5).Cost_Wheat Meat:@Model.Upgrades.ElementAt(5).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(5).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+                    @if (query.BuildingINDEX != Model.Upgrades.ElementAt(5).index)
+                        {
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input asp-for="UpgradeIndex" type="hidden" value="5" />
+                    <button type="submit" value="Upgrade" a class="w-button upgrade">Upgrade</button>  
+               </form>
+                    }
+                    else
+                    {
+                        <p>In Queue</p>
+                        <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+                    }
+             </div>
+        </div>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/farming3.png">
+            </div>
+            <div class="w-col w-col-6">
+                <h5 class="townh">Farm<span class="income">(+@UserTown.TownWHEAT_perHour/h)</span></h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(7).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(7).Cost_Wood Wheat: @Model.Upgrades.ElementAt(7).Cost_Wheat Meat:@Model.Upgrades.ElementAt(7).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(7).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+            @if (query.BuildingINDEX != Model.Upgrades.ElementAt(7).index)
+                {
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input asp-for="UpgradeIndex" type="hidden" value="7" />
+                    <button type="submit" value="Upgrade" a class="w-button upgrade">Upgrade</button> 
+                </form>
+            }
+            else
+            {
+                <p>In Queue</p>
+                    <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+            }
+            </div>
+        </div>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/wall25.png">
+            </div>
+            <div class="w-col w-col-6">
+                <h5 class="townh">City Wall</h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(1).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(1).Cost_Wood Wheat: @Model.Upgrades.ElementAt(1).Cost_Wheat Meat:@Model.Upgrades.ElementAt(1).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(1).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+                    @if (query.BuildingINDEX != Model.Upgrades.ElementAt(1).index)
+                    {
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input asp-for="UpgradeIndex" type="hidden" value="1" />
+                    <button type="submit" value="Upgrade" a class="w-button upgrade">Upgrade</button>
+                </form>
+                    }
+                    else
+                    {
+                        <p>In Queue</p>
+                        <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+                    }
+            </div>
+        </div>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/coins30.png">
+            </div>
+            <div class="w-col w-col-6">
+                <h5 class="townh">Tax House<span class="income">(+@UserTown.TownGOLD_perHour/h)</span></h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(11).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(11).Cost_Wood Wheat: @Model.Upgrades.ElementAt(11).Cost_Wheat Meat:@Model.Upgrades.ElementAt(11).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(11).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+                    @if (query.BuildingINDEX != Model.Upgrades.ElementAt(11).index)
+                    {
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input asp-for="UpgradeIndex" type="hidden" value="11" />
+                    <button type="submit" value="Upgrade" a class="w-button upgrade">Upgrade</button>
+                 </form>
+                    }
+                    else
+                    {
+                        <p>In Queue</p>
+                        <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+                    }
+            </div>
+        </div>
+        <div class="w-row buildingrow">
+            <div class="w-col w-col-3">
+                <img src="~/images/precious.png">
+            </div>
+            <div class="w-col w-col-6">
+                <h5 class="townh">Trade House</h5>
+                <div class="textblock">
+                    Iron:@Model.Upgrades.ElementAt(3).Cost_Iron &nbsp; Wood:@Model.Upgrades.ElementAt(3).Cost_Wood Wheat: @Model.Upgrades.ElementAt(3).Cost_Wheat Meat:@Model.Upgrades.ElementAt(3).Cost_Meat
+                    <br>Build Time:@Model.Upgrades.ElementAt(3).Buildtime
+                </div>
+            </div>
+            <div class="w-col w-col-3">
+                    @if (query.BuildingINDEX != Model.Upgrades.ElementAt(3).index)
+                    {
+                <form asp-controller="Game" asp-action="Upgrade" method="post">
+                    <input asp-for="UpgradeIndex" type="hidden" value="3" />
+                    <button type="submit" value="Upgrade" a class="w-button upgrade">Upgrade</button>
+                </form>
+                    }
+                    else
+                    {
+                        <p>In Queue</p>
+                        <p>@query.ProductionTime.Minute m @query.ProductionTime.Second second</p>
+                    }
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/webflow.js"></script>
+    <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

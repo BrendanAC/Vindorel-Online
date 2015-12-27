@@ -547,11 +547,11 @@
 
 	Webflow.define('dropdown', module.exports = function($, _) {
 	  var api = {};
-	  var tram = $.tram;
 	  var $doc = $(document);
 	  var $dropdowns;
 	  var designer;
 	  var inApp = Webflow.env();
+	  var touch = Webflow.env.touch;
 	  var namespace = '.w-dropdown';
 	  var stateOpen = 'w--open';
 	  var closeEvent = 'w-close' + namespace;
@@ -584,6 +584,7 @@
 	    data.links = data.list.children('.w-dropdown-link');
 	    data.outside = outside(data);
 	    data.complete = complete(data);
+	    data.leave = leave(data);
 
 	    // Remove old events
 	    $el.off(namespace);
@@ -601,6 +602,9 @@
 	      $el.on('setting' + namespace, handler(data));
 	    } else {
 	      data.toggle.on('tap' + namespace, toggle(data));
+	      if (data.config.hover) {
+	        data.toggle.on('mouseenter' + namespace, enter(data));
+	      }
 	      $el.on(closeEvent, handler(data));
 	      // Close in preview mode
 	      inApp && close(data);
@@ -609,8 +613,8 @@
 
 	  function configure(data) {
 	    data.config = {
-	      hover: +data.el.attr('data-hover'),
-	      delay: +data.el.attr('data-delay') || 0
+	      hover: Boolean(data.el.attr('data-hover')) && !touch,
+	      delay: Number(data.el.attr('data-delay')) || 0
 	    };
 	  }
 
@@ -632,12 +636,12 @@
 	  }
 
 	  function toggle(data) {
-	    return _.debounce(function(evt) {
+	    return _.debounce(function() {
 	      data.open ? close(data) : open(data);
 	    });
 	  }
 
-	  function open(data, immediate) {
+	  function open(data) {
 	    if (data.open) return;
 	    closeOthers(data);
 	    data.open = true;
@@ -648,6 +652,7 @@
 
 	    // Listen for tap outside events
 	    if (!designer) $doc.on('tap' + namespace, data.outside);
+	    if (data.hovering) data.el.on('mouseleave' + namespace, data.leave);
 
 	    // Clear previous delay
 	    window.clearTimeout(data.delayId);
@@ -655,12 +660,17 @@
 
 	  function close(data, immediate) {
 	    if (!data.open) return;
+
+	    // Do not close hover-based menus if currently hovering
+	    if (data.config.hover && data.hovering) return;
+
 	    data.open = false;
 	    var config = data.config;
 	    ix.outro(0, data.el[0]);
 
 	    // Stop listening for tap outside events
 	    $doc.off('tap' + namespace, data.outside);
+	    data.el.off('mouseleave' + namespace, data.leave);
 
 	    // Clear previous delay
 	    window.clearTimeout(data.delayId);
@@ -700,6 +710,20 @@
 	    return function() {
 	      data.list.removeClass(stateOpen);
 	      data.toggle.removeClass(stateOpen);
+	    };
+	  }
+
+	  function enter(data) {
+	    return function() {
+	      data.hovering = true;
+	      open(data);
+	    };
+	  }
+
+	  function leave(data) {
+	    return function() {
+	      data.hovering = false;
+	      close(data);
 	    };
 	  }
 
@@ -4325,25 +4349,25 @@
  * Webflow: Interactions: Init
  */
 Webflow.require('ix').init([
-  {"slug":"onload","name":"Onload","value":{"style":{"x":"0px","y":"-100px"},"triggers":[{"type":"load","stepsA":[{"transition":"transform 850ms ease 0ms","x":"0px","y":"5px"}],"stepsB":[],"preserve3d":true}]}},
+  {"slug":"onload","name":"Onload","value":{"style":{"x":"0px","y":"-100px"},"triggers":[{"type":"load","stepsA":[{"transition":"transform 850ms ease 0ms","x":"0px","y":"5px"}],"stepsB":[]}]}},
   {"slug":"bulanik","name":"Bulanik","value":{"style":{"opacity":0},"triggers":[{"type":"load","stepsA":[{"opacity":1,"transition":"opacity 850ms ease 0ms"}],"stepsB":[]}]}},
-  {"slug":"caprazsag","name":"CaprazSag","value":{"style":{"opacity":0},"triggers":[{"type":"load","stepsA":[{"opacity":1,"transition":"transform 850ms ease 0ms, opacity 1000ms ease 0ms","scaleX":1.5,"scaleY":1.5,"scaleZ":1,"rotateX":"0deg","rotateY":"0deg","rotateZ":"145deg","x":"-22px","y":"40px"}],"stepsB":[],"preserve3d":true}]}},
-  {"slug":"caprazsol","name":"CaprazSol","value":{"style":{"opacity":0},"triggers":[{"type":"load","stepsA":[{"opacity":1,"transition":"transform 850ms ease 0ms, opacity 1000ms ease 0ms","scaleX":1.5,"scaleY":1.5,"scaleZ":1,"rotateX":"0deg","rotateY":"0deg","rotateZ":"-145deg","x":"22px","y":"40px"}],"stepsB":[],"preserve3d":true}]}},
-  {"slug":"buttonplay","name":"buttonplay","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"transition":"transform 500ms ease 0ms","scaleX":0.86,"scaleY":0.86,"scaleZ":1}],"stepsB":[{"transition":"transform 500ms ease 0ms","scaleX":1,"scaleY":1,"scaleZ":1}],"preserve3d":true},{"type":"click","selector":".sw1","stepsA":[{"transition":"transform 1000ms ease 0ms","rotateX":"0deg","rotateY":"0deg","rotateZ":"-155deg","x":"0px","y":"300px"}],"stepsB":[{"transition":"transform 1000ms ease 0ms","rotateX":"0deg","rotateY":"0deg","rotateZ":"-145deg","x":"0px","y":"54px"}],"preserve3d":true},{"type":"click","selector":".sw2","stepsA":[{"transition":"transform 1000ms ease 0ms","rotateX":"0deg","rotateY":"0deg","rotateZ":"155deg","x":"0px","y":"300px"}],"stepsB":[{"transition":"transform 1000ms ease 0ms","rotateX":"0deg","rotateY":"0deg","rotateZ":"145deg","x":"0px","y":"54px"}],"preserve3d":true},{"type":"click","selector":".form-wrap","stepsA":[{"display":"block","opacity":0.81,"transition":"transform 500ms ease 0ms, opacity 1500ms ease 0ms","x":"-5px","y":"-188px"}],"stepsB":[{"opacity":0,"wait":1400,"transition":"opacity 600ms ease 0ms"}],"preserve3d":true}]}},
+  {"slug":"caprazsag","name":"CaprazSag","value":{"style":{"opacity":0},"triggers":[{"type":"load","stepsA":[{"opacity":1,"transition":"transform 850ms ease 0ms, opacity 1000ms ease 0ms","scaleX":1.5,"scaleY":1.5,"scaleZ":1,"rotateX":"0deg","rotateY":"0deg","rotateZ":"145deg","x":"-22px","y":"40px"}],"stepsB":[]}]}},
+  {"slug":"caprazsol","name":"CaprazSol","value":{"style":{"opacity":0},"triggers":[{"type":"load","stepsA":[{"opacity":1,"transition":"transform 850ms ease 0ms, opacity 1000ms ease 0ms","scaleX":1.5,"scaleY":1.5,"scaleZ":1,"rotateX":"0deg","rotateY":"0deg","rotateZ":"-145deg","x":"22px","y":"40px"}],"stepsB":[]}]}},
+  {"slug":"buttonplay","name":"buttonplay","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"transition":"transform 500ms ease 0ms","scaleX":0.86,"scaleY":0.86,"scaleZ":1}],"stepsB":[{"transition":"transform 500ms ease 0ms","scaleX":1,"scaleY":1,"scaleZ":1}]},{"type":"click","selector":".sw1","stepsA":[{"transition":"transform 1000ms ease 0ms","rotateX":"0deg","rotateY":"0deg","rotateZ":"-155deg","x":"0px","y":"300px"}],"stepsB":[{"transition":"transform 1000ms ease 0ms","rotateX":"0deg","rotateY":"0deg","rotateZ":"-145deg","x":"0px","y":"54px"}]},{"type":"click","selector":".sw2","stepsA":[{"transition":"transform 1000ms ease 0ms","rotateX":"0deg","rotateY":"0deg","rotateZ":"155deg","x":"0px","y":"300px"}],"stepsB":[{"transition":"transform 1000ms ease 0ms","rotateX":"0deg","rotateY":"0deg","rotateZ":"145deg","x":"0px","y":"54px"}]},{"type":"click","selector":".form-wrap","stepsA":[{"display":"block","opacity":0.81,"transition":"transform 500ms ease 0ms, opacity 1500ms ease 0ms","x":"-5px","y":"-188px"}],"stepsB":[{"opacity":0,"wait":1400,"transition":"opacity 600ms ease 0ms"}]}]}},
   {"slug":"effectscroll","name":"effectscroll","value":{"style":{},"triggers":[{"type":"click","selector":".playbutton","stepsA":[],"stepsB":[]}]}},
-  {"slug":"tekbutton","name":"Tekbutton","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"wait":200,"transition":"transform 500ms ease 0ms","scaleX":0.79,"scaleY":0.79,"scaleZ":1}],"stepsB":[{"transition":"transform 500ms ease 0ms","scaleX":1,"scaleY":1,"scaleZ":1}],"preserve3d":true}]}},
-  {"slug":"radi1","name":"radi1","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"opacity":1,"transition":"transform 500ms ease 0ms, opacity 500ms ease 0ms","scaleX":0.81,"scaleY":0.81,"scaleZ":1}],"stepsB":[],"preserve3d":true},{"type":"click","selector":".radi","stepsA":[],"stepsB":[]}]}},
-  {"slug":"onload2","name":"onload2","value":{"style":{"x":"0px","y":"-500px"},"triggers":[{"type":"load","stepsA":[{"transition":"transform 1000ms ease 0ms","x":"0px","y":"0px"}],"stepsB":[],"preserve3d":true}]}},
-  {"slug":"buttonsize","name":"buttonsize","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"transition":"transform 500ms ease 0ms","scaleX":1.17,"scaleY":1.17,"scaleZ":1}],"stepsB":[{"transition":"transform 500ms ease 0ms","scaleX":1,"scaleY":1,"scaleZ":1}],"preserve3d":true}]}},
-  {"slug":"onload3","name":"onload3","value":{"style":{"x":"-350px","y":"0px"},"triggers":[{"type":"load","preload":true,"stepsA":[{"wait":1000,"transition":"transform 500ms ease 0ms","x":"0px","y":"0px"}],"stepsB":[],"preserve3d":true}]}},
-  {"slug":"onlad5","name":"onlad5","value":{"style":{"x":"0px","y":"-600px"},"triggers":[{"type":"load","preload":true,"stepsA":[{"wait":1000,"transition":"transform 500ms ease 0ms","x":"0px","y":"0px"}],"stepsB":[],"preserve3d":true}]}},
+  {"slug":"tekbutton","name":"Tekbutton","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"wait":200,"transition":"transform 500ms ease 0ms","scaleX":0.79,"scaleY":0.79,"scaleZ":1}],"stepsB":[{"transition":"transform 500ms ease 0ms","scaleX":1,"scaleY":1,"scaleZ":1}]}]}},
+  {"slug":"radi1","name":"radi1","value":{"style":{},"triggers":[{"type":"click","stepsA":[{"opacity":1,"transition":"transform 500ms ease 0ms, opacity 500ms ease 0ms","scaleX":0.81,"scaleY":0.81,"scaleZ":1}],"stepsB":[]},{"type":"click","selector":".radi","stepsA":[],"stepsB":[]}]}},
+  {"slug":"onload2","name":"onload2","value":{"style":{"x":"0px","y":"-500px"},"triggers":[{"type":"load","stepsA":[{"transition":"transform 1000ms ease 0ms","x":"0px","y":"0px"}],"stepsB":[]}]}},
+  {"slug":"buttonsize","name":"buttonsize","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"transition":"transform 500ms ease 0ms","scaleX":1.17,"scaleY":1.17,"scaleZ":1}],"stepsB":[{"transition":"transform 500ms ease 0ms","scaleX":1,"scaleY":1,"scaleZ":1}]}]}},
+  {"slug":"onload3","name":"onload3","value":{"style":{"x":"-350px","y":"0px"},"triggers":[{"type":"load","preload":true,"stepsA":[{"wait":1000,"transition":"transform 500ms ease 0ms","x":"0px","y":"0px"}],"stepsB":[]}]}},
+  {"slug":"onlad5","name":"onlad5","value":{"style":{"x":"0px","y":"-600px"},"triggers":[{"type":"load","preload":true,"stepsA":[{"wait":1000,"transition":"transform 500ms ease 0ms","x":"0px","y":"0px"}],"stepsB":[]}]}},
   {"slug":"ekranyukleme","name":"ekranyukleme","value":{"style":{},"triggers":[{"type":"load","stepsA":[{}],"stepsB":[]}]}},
-  {"slug":"popu","name":"Popu","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"transition":"transform 700ms ease 0ms","scaleX":1.27,"scaleY":1.26,"scaleZ":1}],"stepsB":[{"transition":"transform 700ms ease 0ms","scaleX":1,"scaleY":1,"scaleZ":1}],"preserve3d":true}]}},
-  {"slug":"godeffect","name":"godeffect","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[],"preserve3d":true},{"type":"hover","selector":".contalnor","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}},
-  {"slug":"godeffect-2","name":"godeffect 2","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1}],"stepsB":[],"preserve3d":true},{"type":"hover","selector":".conta","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"display":"none","opacity":0,"transition":"opacity 800ms ease 0ms"}]}]}},
-  {"slug":"godeffect-3","name":"godeffect 3","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[],"preserve3d":true},{"type":"hover","selector":".contb","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}},
-  {"slug":"godeffect-4","name":"godeffect 4","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[],"preserve3d":true},{"type":"hover","selector":".contc","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}},
-  {"slug":"godeffect-5","name":"godeffect 5","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[],"preserve3d":true},{"type":"hover","selector":".contd","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}},
-  {"slug":"godeffect-6","name":"godeffect 6","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[],"preserve3d":true},{"type":"hover","selector":".conte","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}},
-  {"slug":"godeffect-7","name":"godeffect 7","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[],"preserve3d":true},{"type":"hover","selector":".contf","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}}
+  {"slug":"popu","name":"Popu","value":{"style":{},"triggers":[{"type":"hover","stepsA":[{"transition":"transform 700ms ease 0ms","scaleX":1.27,"scaleY":1.26,"scaleZ":1}],"stepsB":[{"transition":"transform 700ms ease 0ms","scaleX":1,"scaleY":1,"scaleZ":1}]}]}},
+  {"slug":"godeffect","name":"godeffect","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[]},{"type":"hover","selector":".contalnor","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}},
+  {"slug":"godeffect-2","name":"godeffect 2","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1}],"stepsB":[]},{"type":"hover","selector":".conta","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"display":"none","opacity":0,"transition":"opacity 800ms ease 0ms"}]}]}},
+  {"slug":"godeffect-3","name":"godeffect 3","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[]},{"type":"hover","selector":".contb","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}},
+  {"slug":"godeffect-4","name":"godeffect 4","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[]},{"type":"hover","selector":".contc","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}},
+  {"slug":"godeffect-5","name":"godeffect 5","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[]},{"type":"hover","selector":".contd","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}},
+  {"slug":"godeffect-6","name":"godeffect 6","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[]},{"type":"hover","selector":".conte","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}},
+  {"slug":"godeffect-7","name":"godeffect 7","value":{"style":{},"triggers":[{"type":"hover","selector":".rightsection","stepsA":[{"transition":"transform 500ms ease 0ms","x":"-10px","y":"500px","z":"0px","scaleX":1,"scaleY":0.61,"scaleZ":1},{}],"stepsB":[]},{"type":"hover","selector":".contf","stepsA":[{"display":"block"},{"opacity":1,"transition":"opacity 800ms ease 0ms"}],"stepsB":[{"opacity":0,"transition":"opacity 200ms ease 0ms"},{"display":"none"}]}]}}
 ]);

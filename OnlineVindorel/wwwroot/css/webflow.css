@@ -1731,8 +1731,11 @@ textarea.w-select {
 */
 .wf-design-mode figure[data-rt-type="video"] > div:before,
 .w-editor-mount .w-dyn-list figure[data-rt-type="video"] > div:before,
-.w-editor-mount .w-editable figure[data-rt-type="video"] > div:before {
+.w-editor-mount .w-rte-editable figure[data-rt-type="video"] > div:before {
   display: block;
+}
+.w-editor-mount .w-rte-editable {
+  cursor: text;
 }
 .w-nav {
   position: relative;

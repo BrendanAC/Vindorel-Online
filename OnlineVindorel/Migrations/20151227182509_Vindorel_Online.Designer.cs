@@ -8,7 +8,7 @@ using OnlineVindorel.Models;
 namespace OnlineVindorel.Migrations
 {
     [DbContext(typeof(VindorelDbContext))]
-    [Migration("20151222053615_Vindorel_Online")]
+    [Migration("20151227182509_Vindorel_Online")]
     partial class Vindorel_Online
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,6 +147,69 @@ namespace OnlineVindorel.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUsers");
                 });
 
+            modelBuilder.Entity("OnlineVindorel.Models.Messages", b =>
+                {
+                    b.Property<int>("MessageID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("From");
+
+                    b.Property<string>("Message")
+                        .HasAnnotation("MaxLength", 100);
+
+                    b.Property<DateTime>("SendTime");
+
+                    b.Property<string>("To");
+
+                    b.Property<string>("UserID");
+
+                    b.HasKey("MessageID");
+                });
+
+            modelBuilder.Entity("OnlineVindorel.Models.Mission", b =>
+                {
+                    b.Property<int>("MissionID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Army_Bowman");
+
+                    b.Property<int>("Army_Rider");
+
+                    b.Property<int>("Army_Swordman");
+
+                    b.Property<int>("MissionType");
+
+                    b.Property<DateTime>("Time");
+
+                    b.Property<int>("TownFrom");
+
+                    b.Property<string>("TownFromGod");
+
+                    b.Property<int>("TownId");
+
+                    b.Property<int>("TownTo");
+
+                    b.Property<string>("TownToGod");
+
+                    b.HasKey("MissionID");
+                });
+
+            modelBuilder.Entity("OnlineVindorel.Models.TownArmy", b =>
+                {
+                    b.Property<int>("TownArmyID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Bowman");
+
+                    b.Property<int>("Rider");
+
+                    b.Property<int>("Swordman");
+
+                    b.Property<int>("TownId");
+
+                    b.HasKey("TownArmyID");
+                });
+
             modelBuilder.Entity("OnlineVindorel.Models.TownBuildings", b =>
                 {
                     b.Property<int>("BuildingsID")
@@ -208,6 +271,8 @@ namespace OnlineVindorel.Migrations
 
                     b.Property<int>("Coordinate_Y");
 
+                    b.Property<DateTime>("LastUpdated");
+
                     b.Property<int>("MaxFOOD");
 
                     b.Property<int>("MaxIRON");
@@ -241,6 +306,20 @@ namespace OnlineVindorel.Migrations
                     b.HasKey("TownId");
                 });
 
+            modelBuilder.Entity("OnlineVindorel.Models.UpgradeQueue", b =>
+                {
+                    b.Property<int>("UpgradeID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BuildingINDEX");
+
+                    b.Property<DateTime>("ProductionTime");
+
+                    b.Property<int>("TownID");
+
+                    b.HasKey("UpgradeID");
+                });
+
             modelBuilder.Entity("OnlineVindorel.Models.UserGameSettings", b =>
                 {
                     b.Property<int>("SettingID")
@@ -250,13 +329,15 @@ namespace OnlineVindorel.Migrations
 
                     b.Property<int>("ArmySpeed");
 
+                    b.Property<int>("BattleStat");
+
                     b.Property<int>("BuildSpeed");
 
                     b.Property<int>("CultureRate");
 
-                    b.Property<string>("God");
+                    b.Property<int>("DefeatStat");
 
-                    b.Property<string>("Job");
+                    b.Property<string>("God");
 
                     b.Property<int>("NaturalAttack");
 
@@ -274,15 +355,37 @@ namespace OnlineVindorel.Migrations
 
                     b.Property<int>("Point_Military");
 
-                    b.Property<string>("Race");
-
                     b.Property<int>("TraderRate");
 
                     b.Property<int>("TrainSpeed");
 
                     b.Property<string>("UserId");
 
+                    b.Property<int>("VictoryStat");
+
                     b.HasKey("SettingID");
+                });
+
+            modelBuilder.Entity("OnlineVindorel.Models.UserTechnologyTree", b =>
+                {
+                    b.Property<int>("TechnologyID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CULTURE_BTimeReduction");
+
+                    b.Property<int>("CULTURE_Morale");
+
+                    b.Property<int>("ECONOMY_Obey");
+
+                    b.Property<int>("ECONOMY_SafeRoad");
+
+                    b.Property<int>("MILITARY_Defence");
+
+                    b.Property<int>("MILITARY_Power");
+
+                    b.Property<string>("UserID");
+
+                    b.HasKey("TechnologyID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
@@ -317,6 +420,27 @@ namespace OnlineVindorel.Migrations
                         .HasForeignKey("UserId");
                 });
 
+            modelBuilder.Entity("OnlineVindorel.Models.Messages", b =>
+                {
+                    b.HasOne("OnlineVindorel.Models.Account")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+                });
+
+            modelBuilder.Entity("OnlineVindorel.Models.Mission", b =>
+                {
+                    b.HasOne("OnlineVindorel.Models.Towns")
+                        .WithMany()
+                        .HasForeignKey("TownId");
+                });
+
+            modelBuilder.Entity("OnlineVindorel.Models.TownArmy", b =>
+                {
+                    b.HasOne("OnlineVindorel.Models.Towns")
+                        .WithMany()
+                        .HasForeignKey("TownId");
+                });
+
             modelBuilder.Entity("OnlineVindorel.Models.TownBuildings", b =>
                 {
                     b.HasOne("OnlineVindorel.Models.Towns")
@@ -338,11 +462,25 @@ namespace OnlineVindorel.Migrations
                         .HasForeignKey("UserId");
                 });
 
+            modelBuilder.Entity("OnlineVindorel.Models.UpgradeQueue", b =>
+                {
+                    b.HasOne("OnlineVindorel.Models.Towns")
+                        .WithMany()
+                        .HasForeignKey("TownID");
+                });
+
             modelBuilder.Entity("OnlineVindorel.Models.UserGameSettings", b =>
                 {
                     b.HasOne("OnlineVindorel.Models.Account")
                         .WithMany()
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("OnlineVindorel.Models.UserTechnologyTree", b =>
+                {
+                    b.HasOne("OnlineVindorel.Models.Account")
+                        .WithMany()
+                        .HasForeignKey("UserID");
                 });
         }
     }

@@ -4,6 +4,7 @@
     ViewData["Title"] = User.GetUserName();
     var UserTown = _context.Towns.LastOrDefault(x => x.UserId == User.GetUserId());
     var TownPop = _context.Population.LastOrDefault(x => x.TownId == UserTown.TownId);
+    var Settings = _context.UserGameSettings.LastOrDefault(x => x.UserId == User.GetUserId());
 }
 
 <!DOCTYPE html>
@@ -37,33 +38,34 @@
 <body class="w-clearfix game">
     <div class="w-section w-clearfix headersection">
         <div class="playerresources">
-            <a href="Game/Messages/" class="w-inline-block">
+            <a href="#" class="w-inline-block">
                 <img src="~/images/mail59.png" data-ix="popu" class="messages">
             </a>
-            <a href="Game/Profile/" class="w-inline-block">
+            <a href="#" class="w-inline-block">
                 <img src="~/images/user168.png" data-ix="popu" class="myaccount">
             </a>
-            <a href="Game/Settings/" class="w-inline-block">
+            <a href="#" class="w-inline-block">
                 <img src="~/images/tools6.png" data-ix="popu" class="settings">
             </a>
-            <form asp-controller="Account" asp-action="LogOff" method="post" class="w-inline-block">
-                <button type="submit" class="w-inline-block">
-                    <img src="~/images/sign4.png" class="signout">
+            <img src="~/images/sign4.png" data-ix="popu" class="signout">
+            <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="w-inline-block linkblocks">
+                <button type="submit" class="w-inline-block linkblocks">
                 </button>
-            </form>
-        </div>
+                </form>
+       </div>
+        <div class="logindesc">Welcome @User.GetUserName(), You Are in @UserTown.TownName</div>
         <div class="rightres">
             <img width="26" src="~/images/meat.png" class="meat">
-            <div class="meattext">Meat :@UserTown.TownMEAT</div>
-            <div class="traderpoptext">@TownPop.TraderPop</div>
-            <div class="aggresivpop">@TownPop.AggressivePop</div>
-            <div class="culturalpop">@TownPop.CulturalPop</div>
+            <div class="meattext">Meat : @UserTown.TownMEAT</div>
             <div class="irontext">Iron : @UserTown.TownIRON</div><img width="24" src="~/images/bread-32.png" class="bread">
-            <div class="restext">Wood : @UserTown.TownWOOD&nbsp;</div>
-            <div class="breadtext">Wheat :@UserTown.TownWHEAT </div><img width="28" src="~/images/ironicon.png" class="iron"><img width="24" src="~/images/pine-trees-icon.png" class="wood"><img width="16" src="~/images/coin_stacks_gold.png" class="traderpop"><img width="16" src="~/images/book-open-icon.png" class="cultureppl"><img width="16" src="~/images/Fire.png" class="firedpop"><img width="54" src="~/images/crowd.png" data-ix="popu" class="population">
+            <div class="restext">Wood :@UserTown.TownWOOD&nbsp;</div>
+            <div class="breadtext">Wheat :@UserTown.TownWHEAT</div><img width="28" src="~/images/ironicon.png" class="iron"><img width="24" src="~/images/pine-trees-icon.png" class="wood"><img width="16" src="~/images/coin_stacks_gold.png" class="traderpop">
+            <div class="poptrade">Traders:@TownPop.TraderPop</div>
+            <div class="popmilitary">Anarchists:@TownPop.AggressivePop</div>
+            <div class="popcultural">Intellectuals:@TownPop.CulturalPop</div><img width="16" src="~/images/book-open-icon.png" class="cultureppl"><img width="16" src="~/images/Fire.png" class="firedpop">
         </div>
         <div class="vindorel">
-            <h1 class="vin">VindorelOnline</h1><img width="546" src="~/images/clipart-celtic-sword-silhouette-by-rones-256x256-a78e.png" class="sword">
+            <h1 href="/Game/Index/" class="vin">VindorelOnline</h1><img width="546" src="~/images/clipart-celtic-sword-silhouette-by-rones-256x256-a78e.png" class="sword">
             <p class="slog">Courage Must Be Earned</p>
         </div>
     </div>
@@ -71,7 +73,7 @@
     <div class="w-section leftsection"></div>
     <div class="w-row rowmenu">
         <div class="w-col w-col-2 rowcollumn text">
-            <a href="#" class="w-inline-block rowcollumn links">
+            <a href="/Game/Buildings/" class="w-inline-block rowcollumn links">
                 <div class="menus">Buildings</div>
             </a>
         </div>
@@ -102,10 +104,43 @@
         </div>
     </div>
     <div class="gamewindow">
-            <p>Giris Yaptiniz</p>
+        <p class="openning">
+            When you wake up in the middle of Urahar Hills.
+            <br>
+            <br>The Sun will fall to your knees.
+            <br>
+            <br>The Swords will cry to @Settings.God.
+            <br>
+            <br>
+            <br>You have to claim what you deserve.
+            <br>
+            <br>You must bring the peace to your lands!
+            <br>
+            <br>Or be doom to World of Vindorel!
+        </p>
+        <h2 class="starter">Welcome To World of Vindorel</h2>
+        <p class="openning right">
+            Your people believes on you &nbsp;@User.GetUserName()!&nbsp;
+            <br>
+            <br>You took your people to find new land after Epic Battle of Karsukar'ul...
+            <br>
+            <br>At the end of big sand storms &nbsp;
+            <br>
+            <br>Finally...
+            <br>
+            <br>You and your people claim a new land at
+            <br>
+            <br>Sharazirs Mountains.
+            <br>
+            <br>
+            <br>
+            <br>Your fate in your hands.
+            <br>
+            <br>CHOOSE YOUR DESTINY....
+        </p>
     </div>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/webflow.js"></script>
+    <script type="text/javascript" src="~/js/webflow.js"></script>
     <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
 </body>
 </html>

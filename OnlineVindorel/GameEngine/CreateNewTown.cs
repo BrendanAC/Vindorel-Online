@@ -3,585 +3,142 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.Security.Claims;
 namespace OnlineVindorel.GameEngine
 {
     public class CreateNewTown
     {
         public void CreateTown(Account Player,UserGameSettings Settings)
         {
-
             Towns NewTown = new Towns();
             SettingStats(Settings);
-            SettingTown(NewTown);
+            SettingTown(NewTown,Player);
             Player.Towns.Add(NewTown);
 
         }
         private void SettingStats(UserGameSettings Settings)
         {
-            if (Settings.God == "Fus")
+            if (Settings.God == "fus")
             {
-
-                if (Settings.Race == "orc")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-
-                    }
-                }
-
-                else if (Settings.Race == "human")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-
-                }
+                Settings.AnarchyRate = 1;
+                Settings.ArmySpeed = 1;
+                Settings.BuildSpeed = 1;
+                Settings.CultureRate = 1;
+                Settings.NaturalAttack = 1;
+                Settings.NaturalDef = 1;
+                Settings.Point_Culture = 1;
+                Settings.Point_Economy = 1;
+                Settings.Point_Exp = 1;
+                Settings.Point_Karma = 1;
+                Settings.Point_Military = 1;
+                Settings.NaturalBreedRate = 1;
+                Settings.TraderRate = 1;
+                Settings.TrainSpeed = 1;
             }
-            else if (Settings.God == "Teliros")
+            if (Settings.God == "teliros")
             {
-                if (Settings.Race == "orc")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-
-                    }
-                }
-
-                else if (Settings.Race == "human")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-
-                }
+                Settings.AnarchyRate = 1;
+                Settings.ArmySpeed = 1;
+                Settings.BuildSpeed = 1;
+                Settings.CultureRate = 1;
+                Settings.NaturalAttack = 1;
+                Settings.NaturalDef = 1;
+                Settings.Point_Culture = 1;
+                Settings.Point_Economy = 1;
+                Settings.Point_Exp = 1;
+                Settings.Point_Karma = 1;
+                Settings.Point_Military = 1;
+                Settings.NaturalBreedRate = 1;
+                Settings.TraderRate = 1;
+                Settings.TrainSpeed = 1;
             }
-            else if (Settings.God == "Sopyak")
+            if (Settings.God == "sopyak")
             {
-                if (Settings.Race == "orc")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-
-                    }
-                }
-
-                else if (Settings.Race == "human")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-
-                }
+                Settings.AnarchyRate = 1;
+                Settings.ArmySpeed = 1;
+                Settings.BuildSpeed = 1;
+                Settings.CultureRate = 1;
+                Settings.NaturalAttack = 1;
+                Settings.NaturalDef = 1;
+                Settings.Point_Culture = 1;
+                Settings.Point_Economy = 1;
+                Settings.Point_Exp = 1;
+                Settings.Point_Karma = 1;
+                Settings.Point_Military = 1;
+                Settings.NaturalBreedRate = 1;
+                Settings.TraderRate = 1;
+                Settings.TrainSpeed = 1;
             }
-            else if (Settings.God == "Xaraxel")
+            if (Settings.God == "xaraxel")
             {
-                if (Settings.Race == "orc")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-
-                    }
-                }
-
-                else if (Settings.Race == "human")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-
-                }
+                Settings.AnarchyRate = 1;
+                Settings.ArmySpeed = 1;
+                Settings.BuildSpeed = 1;
+                Settings.CultureRate = 1;
+                Settings.NaturalAttack = 1;
+                Settings.NaturalDef = 1;
+                Settings.Point_Culture = 1;
+                Settings.Point_Economy = 1;
+                Settings.Point_Exp = 1;
+                Settings.Point_Karma = 1;
+                Settings.Point_Military = 1;
+                Settings.NaturalBreedRate = 1;
+                Settings.TraderRate = 1;
+                Settings.TrainSpeed = 1;
             }
-            else if (Settings.God == "Handor")
+            if (Settings.God == "handor")
             {
-                if (Settings.Race == "orc")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-
-                    }
-                }
-
-                else if (Settings.Race == "human")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-
-                }
+                Settings.AnarchyRate = 1;
+                Settings.ArmySpeed = 1;
+                Settings.BuildSpeed = 1;
+                Settings.CultureRate = 1;
+                Settings.NaturalAttack = 1;
+                Settings.NaturalDef = 1;
+                Settings.Point_Culture = 1;
+                Settings.Point_Economy = 1;
+                Settings.Point_Exp = 1;
+                Settings.Point_Karma = 1;
+                Settings.Point_Military = 1;
+                Settings.NaturalBreedRate = 1;
+                Settings.TraderRate = 1;
+                Settings.TrainSpeed = 1;
             }
-            else if (Settings.God == "Zean")
+            if (Settings.God == "zean")
             {
-                if (Settings.Race == "orc")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-
-                    }
-                }
-
-                else if (Settings.Race == "human")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-
-                }
+                Settings.AnarchyRate = 1;
+                Settings.ArmySpeed = 1;
+                Settings.BuildSpeed = 1;
+                Settings.CultureRate = 1;
+                Settings.NaturalAttack = 1;
+                Settings.NaturalDef = 1;
+                Settings.Point_Culture = 1;
+                Settings.Point_Economy = 1;
+                Settings.Point_Exp = 1;
+                Settings.Point_Karma = 1;
+                Settings.Point_Military = 1;
+                Settings.NaturalBreedRate = 1;
+                Settings.TraderRate = 1;
+                Settings.TrainSpeed = 1;
             }
-            else if (Settings.God == "Atheist")
+            if (Settings.God == "atheist")
             {
-                if (Settings.Race == "orc")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-
-                    }
-                }
-
-                else if (Settings.Race == "human")
-                {
-                    if (Settings.Job == "builder")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-                    else if (Settings.Job == "warrior")
-                    {
-                        Settings.AnarchyRate = 1;
-                        Settings.ArmySpeed = 1;
-                        Settings.BuildSpeed = 1;
-                        Settings.CultureRate = 1;
-                        Settings.NaturalAttack = 1;
-                        Settings.NaturalDef = 1;
-                        Settings.Point_Culture = 1;
-                        Settings.Point_Economy = 1;
-                        Settings.Point_Exp = 1;
-                        Settings.Point_Karma = 1;
-                        Settings.Point_Military = 1;
-                        Settings.NaturalBreedRate = 1;
-                        Settings.TraderRate = 1;
-                        Settings.TrainSpeed = 1;
-                    }
-
-                }
+                Settings.AnarchyRate = 1;
+                Settings.ArmySpeed = 1;
+                Settings.BuildSpeed = 1;
+                Settings.CultureRate = 1;
+                Settings.NaturalAttack = 1;
+                Settings.NaturalDef = 1;
+                Settings.Point_Culture = 1;
+                Settings.Point_Economy = 1;
+                Settings.Point_Exp = 1;
+                Settings.Point_Karma = 1;
+                Settings.Point_Military = 1;
+                Settings.NaturalBreedRate = 1;
+                Settings.TraderRate = 1;
+                Settings.TrainSpeed = 1;
             }
         }
-        private void SettingTown(Towns NewTown)
+        private void SettingTown(Towns NewTown,Account Player)
         {
             NewTown.TownName = "YourTownName";
             NewTown.TownBuildings.Add(new TownBuildings
@@ -612,8 +169,8 @@ namespace OnlineVindorel.GameEngine
             #region DefaultTownStats
             NewTown.TownGOLD = 100;
             NewTown.TownIRON = 300;
-            NewTown.TownMEAT = 60;
-            NewTown.TownWHEAT = 50;
+            NewTown.TownMEAT = 600;
+            NewTown.TownWHEAT = 500;
             NewTown.TownWOOD = 1000;
             NewTown.MaxFOOD = 10000;
             NewTown.MaxIRON = 10000;
@@ -623,9 +180,11 @@ namespace OnlineVindorel.GameEngine
             NewTown.TownMeat_perHour = 0;
             NewTown.TownWOOD_perHour = 0;
             NewTown.TownWHEAT_perHour = 0;
-
+            NewTown.LastUpdated = DateTime.Now;
+            
             NewTown.Coordinate_X = 0;
             NewTown.Coordinate_Y = 0;
+            NewTown.User = Player;
             #endregion
         }
     }

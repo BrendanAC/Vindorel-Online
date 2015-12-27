@@ -1,0 +1,137 @@
+﻿@using System.Security.Claims
+@{
+    VindorelDbContext _context = new VindorelDbContext();
+    var UserTown = _context.Towns.LastOrDefault(x => x.UserId == User.GetUserId());
+    var TownPop = _context.Population.LastOrDefault(x => x.TownId == UserTown.TownId);
+    var Settings = _context.UserGameSettings.LastOrDefault(x => x.UserId == User.GetUserId());
+    var sum = TownPop.AggressivePop + TownPop.CulturalPop + TownPop.TraderPop;
+}
+
+<!DOCTYPE html>
+
+<html data-wf-site="5664718fcdf237d35fd4534f" data-wf-page="567fc6171a7aef717072a869" lang="tur">
+<head>
+    <meta charset="utf-8">
+    <title>My Account</title>
+    <meta name="description" content="Vindorel is The Multiplayer Town and Lord management game.The people have their own hero to climb the ladder of courage.There is a lot of land to conquer and lands to loose.The power inside you will light your path trough the darkness.Or Will you be the darkness itself. Can you fight against yourself?.This world is Cruel and bloody.Choose your side to fight. Conquer the World which noone have enough courage to see.">
+    <meta property="og:title" content="My Account">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Webflow">
+    <environment names="Development">
+        <link rel="stylesheet" type="text/css" href="~/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="~/css/webflow.css">
+        <link rel="stylesheet" type="text/css" href="~/css/vindoreltest.webflow.css">
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/css/vindoreltest.webflow.css" asp-append-version="true" />
+    </environment>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+    <script>
+    WebFont.load({
+      google: {
+        families: ["Baumans:regular"]
+      }
+    });
+    </script>
+    <script type="text/javascript" src="~/js/modernizr.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
+    <link rel="apple-touch-icon" href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
+</head>
+<body class="w-clearfix game">
+        <div class="w-section w-clearfix headersection">
+            <div class="playerresources">
+                <a href="#" class="w-inline-block">
+                    <img src="~/images/mail59.png" data-ix="popu" class="messages">
+                </a>
+                <a href="#" class="w-inline-block">
+                    <img src="~/images/user168.png" data-ix="popu" class="myaccount">
+                </a>
+                <a href="#" class="w-inline-block">
+                    <img src="~/images/tools6.png" data-ix="popu" class="settings">
+                </a>
+                <a href="#" class="w-inline-block linkblocks">
+                    <img src="~/images/sign4.png" data-ix="popu" class="signout">
+                </a>
+            </div>
+            <div class="logindesc">Welcome @User.GetUserName(). You Are in @UserTown.TownName</div>
+            <div class="rightres">
+                <img width="26" src="~/images/meat.png" class="meat">
+                <div class="meattext">Meat : @UserTown.TownMEAT</div>
+                <div class="irontext">Iron : @UserTown.TownIRON</div><img width="24" src="~/images/bread-32.png" class="bread">
+                <div class="restext">Wood :@UserTown.TownWOOD&nbsp;</div>
+                <div class="breadtext">Wheat :@UserTown.TownWHEAT</div><img width="28" src="~/images/ironicon.png" class="iron"><img width="24" src="~/images/pine-trees-icon.png" class="wood"><img width="16" src="~/images/coin_stacks_gold.png" class="traderpop">
+                <div class="poptrade">Traders:@TownPop.TraderPop</div>
+                <div class="popmilitary">Anarchists:@TownPop.AggressivePop</div>
+                <div class="popcultural">Intellectuals:@TownPop.CulturalPop</div><img width="16" src="~/images/book-open-icon.png" class="cultureppl"><img width="16" src="~/images/Fire.png" class="firedpop">
+            </div>
+            <div class="vindorel">
+                <h1 class="vin">VindorelOnline</h1><img width="546" src="~/images/clipart-celtic-sword-silhouette-by-rones-256x256-a78e.png" class="sword">
+                <p class="slog">Courage Must Be Earned</p>
+            </div>
+        </div>
+        <div class="w-section right2section"></div>
+        <div class="w-section leftsection"></div>
+        <div class="w-row rowmenu">
+            <div class="w-col w-col-2 rowcollumn text">
+                <a href="/Game/Buildings" class="w-inline-block rowcollumn links">
+                    <div class="menus">Buildings</div>
+                </a>
+            </div>
+            <div class="w-col w-col-2 rowcollumn text">
+                <a href="#" class="w-inline-block rowcollumn links">
+                    <div class="menus">Army</div>
+                </a>
+            </div>
+            <div class="w-col w-col-2 rowcollumn text">
+                <a href="#" class="w-inline-block rowcollumn links">
+                    <div class="menus">Technology</div>
+                </a>
+            </div>
+            <div class="w-col w-col-2 rowcollumn text">
+                <a href="#" class="w-inline-block rowcollumn links">
+                    <div class="menus">Map</div>
+                </a>
+            </div>
+            <div class="w-col w-col-2 rowcollumn text">
+                <a href="#" class="w-inline-block rowcollumn links">
+                    <div class="menus">Innhouse</div>
+                </a>
+            </div>
+            <div class="w-col w-col-2 rowcollumn text">
+                <a href="#" class="w-inline-block rowcollumn links">
+                    <div class="menus">Battle</div>
+                </a>
+            </div>
+        </div>
+        <div class="gamewindow">
+            <div class="exp">
+                Username:
+                <br>
+                <br>Your Towns:@_context.Towns.Count(x => x.UserId == User.GetUserId());
+                <br>Populations:@sum;
+                <br>
+                <br>
+                <br>Experience:@Settings.Point_Exp&nbsp;
+                <br>
+                <br>Victories:@Settings.VictoryStat
+                <br>Defeats:@Settings.DefeatStat
+                <br>Natural Defance:@Settings.NaturalDef
+                <br>Natural Attack:@Settings.NaturalAttack
+                <br>Natural Breed Rate : @Settings.NaturalBreedRate
+                <br>Culture : @Settings.Point_Culture&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BreedRate:@TownPop.BreedRate
+                <br>Economy:@Settings.Point_Economy &nbsp; &nbsp; &nbsp; &nbsp; TraderRate:@Settings.TraderRate
+                <br>Military:@Settings.Point_Military &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <div class="w-form changeyourname">
+                <form asp-controller="Game" asp-action="NameUpdate" id="townform" name="townform" data-name="Email Form" class="changingname">
+                    <label for="name">Town Name :@UserTown.TownName&nbsp;</label>
+                    <input asp-for="@UserTown.TownName" id="name" type="text" placeholder="New Town Name" name="name" data-name="Name" class="w-input update">
+                    <input type="submit" value="Change Your Town Name" class="w-button updatename">
+                </form>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="~/js/webflow.js"></script>
+        <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+    </body>
+</html>

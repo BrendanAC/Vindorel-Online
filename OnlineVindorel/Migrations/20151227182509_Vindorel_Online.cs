@@ -129,6 +129,28 @@ namespace OnlineVindorel.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
             migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    MessageID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    From = table.Column<string>(nullable: true),
+                    Message = table.Column<string>(nullable: true),
+                    SendTime = table.Column<DateTime>(nullable: false),
+                    To = table.Column<string>(nullable: true),
+                    UserID = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.MessageID);
+                    table.ForeignKey(
+                        name: "FK_Messages_Account_UserID",
+                        column: x => x.UserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+            migrationBuilder.CreateTable(
                 name: "Towns",
                 columns: table => new
                 {
@@ -136,6 +158,7 @@ namespace OnlineVindorel.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Coordinate_X = table.Column<int>(nullable: false),
                     Coordinate_Y = table.Column<int>(nullable: false),
+                    LastUpdated = table.Column<DateTime>(nullable: false),
                     MaxFOOD = table.Column<int>(nullable: false),
                     MaxIRON = table.Column<int>(nullable: false),
                     MaxWOOD = table.Column<int>(nullable: false),
@@ -170,10 +193,11 @@ namespace OnlineVindorel.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AnarchyRate = table.Column<int>(nullable: false),
                     ArmySpeed = table.Column<int>(nullable: false),
+                    BattleStat = table.Column<int>(nullable: false),
                     BuildSpeed = table.Column<int>(nullable: false),
                     CultureRate = table.Column<int>(nullable: false),
+                    DefeatStat = table.Column<int>(nullable: false),
                     God = table.Column<string>(nullable: true),
-                    Job = table.Column<string>(nullable: true),
                     NaturalAttack = table.Column<int>(nullable: false),
                     NaturalBreedRate = table.Column<int>(nullable: false),
                     NaturalDef = table.Column<int>(nullable: false),
@@ -182,10 +206,10 @@ namespace OnlineVindorel.Migrations
                     Point_Exp = table.Column<int>(nullable: false),
                     Point_Karma = table.Column<int>(nullable: false),
                     Point_Military = table.Column<int>(nullable: false),
-                    Race = table.Column<string>(nullable: true),
                     TraderRate = table.Column<int>(nullable: false),
                     TrainSpeed = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true),
+                    VictoryStat = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -196,6 +220,78 @@ namespace OnlineVindorel.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+            migrationBuilder.CreateTable(
+                name: "UserTechnologyTree",
+                columns: table => new
+                {
+                    TechnologyID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CULTURE_BTimeReduction = table.Column<int>(nullable: false),
+                    CULTURE_Morale = table.Column<int>(nullable: false),
+                    ECONOMY_Obey = table.Column<int>(nullable: false),
+                    ECONOMY_SafeRoad = table.Column<int>(nullable: false),
+                    MILITARY_Defence = table.Column<int>(nullable: false),
+                    MILITARY_Power = table.Column<int>(nullable: false),
+                    UserID = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserTechnologyTree", x => x.TechnologyID);
+                    table.ForeignKey(
+                        name: "FK_UserTechnologyTree_Account_UserID",
+                        column: x => x.UserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+            migrationBuilder.CreateTable(
+                name: "Mission",
+                columns: table => new
+                {
+                    MissionID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Army_Bowman = table.Column<int>(nullable: false),
+                    Army_Rider = table.Column<int>(nullable: false),
+                    Army_Swordman = table.Column<int>(nullable: false),
+                    MissionType = table.Column<int>(nullable: false),
+                    Time = table.Column<DateTime>(nullable: false),
+                    TownFrom = table.Column<int>(nullable: false),
+                    TownFromGod = table.Column<string>(nullable: true),
+                    TownId = table.Column<int>(nullable: false),
+                    TownTo = table.Column<int>(nullable: false),
+                    TownToGod = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Mission", x => x.MissionID);
+                    table.ForeignKey(
+                        name: "FK_Mission_Towns_TownId",
+                        column: x => x.TownId,
+                        principalTable: "Towns",
+                        principalColumn: "TownId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+            migrationBuilder.CreateTable(
+                name: "TownArmy",
+                columns: table => new
+                {
+                    TownArmyID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Bowman = table.Column<int>(nullable: false),
+                    Rider = table.Column<int>(nullable: false),
+                    Swordman = table.Column<int>(nullable: false),
+                    TownId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TownArmy", x => x.TownArmyID);
+                    table.ForeignKey(
+                        name: "FK_TownArmy_Towns_TownId",
+                        column: x => x.TownId,
+                        principalTable: "Towns",
+                        principalColumn: "TownId",
+                        onDelete: ReferentialAction.Cascade);
                 });
             migrationBuilder.CreateTable(
                 name: "TownBuildings",
@@ -249,6 +345,26 @@ namespace OnlineVindorel.Migrations
                         principalColumn: "TownId",
                         onDelete: ReferentialAction.Cascade);
                 });
+            migrationBuilder.CreateTable(
+                name: "UpgradeQueue",
+                columns: table => new
+                {
+                    UpgradeID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    BuildingINDEX = table.Column<int>(nullable: false),
+                    ProductionTime = table.Column<DateTime>(nullable: false),
+                    TownID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UpgradeQueue", x => x.UpgradeID);
+                    table.ForeignKey(
+                        name: "FK_UpgradeQueue_Towns_TownID",
+                        column: x => x.TownID,
+                        principalTable: "Towns",
+                        principalColumn: "TownId",
+                        onDelete: ReferentialAction.Cascade);
+                });
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
@@ -269,9 +385,14 @@ namespace OnlineVindorel.Migrations
             migrationBuilder.DropTable("AspNetUserClaims");
             migrationBuilder.DropTable("AspNetUserLogins");
             migrationBuilder.DropTable("AspNetUserRoles");
+            migrationBuilder.DropTable("Messages");
+            migrationBuilder.DropTable("Mission");
+            migrationBuilder.DropTable("TownArmy");
             migrationBuilder.DropTable("TownBuildings");
             migrationBuilder.DropTable("TownPopulations");
+            migrationBuilder.DropTable("UpgradeQueue");
             migrationBuilder.DropTable("UserGameSettings");
+            migrationBuilder.DropTable("UserTechnologyTree");
             migrationBuilder.DropTable("AspNetRoles");
             migrationBuilder.DropTable("Towns");
             migrationBuilder.DropTable("AspNetUsers");

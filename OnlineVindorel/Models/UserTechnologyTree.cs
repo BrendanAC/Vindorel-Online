@@ -10,12 +10,19 @@ namespace OnlineVindorel.Models
     {
         [Key]
         public int TechnologyID { get; set; }
-    
-        public int EconomyLevel { get; set; }
-        public int CultureLevel { get; set; }
-        public int MilitaryLevel { get; set; }
 
-        public string userId { get; set; }
-        public virtual Account User { get; set; }
+        public int ECONOMY_Obey { get; set; }
+        public int ECONOMY_SafeRoad { get; set; }
+
+        public int CULTURE_Morale { get; set; }
+        public int CULTURE_BTimeReduction { get; set; }
+
+        public int MILITARY_Power { get; set; }
+        public int MILITARY_Defence { get; set; }
+
+
+
+        public string UserID { get; set; }
+        public virtual Account User{ get; set; }
     }
 }

@@ -33,6 +33,7 @@ namespace OnlineVindorel.Models
         public int TownIRON_perHour { get; set; }
         public int TownWOOD { get; set; }
         public int TownWOOD_perHour { get; set; }
+        public DateTime LastUpdated { get; set; }
 
         public virtual ICollection<TownBuildings> TownBuildings { get; set; }
         public virtual ICollection<TownPopulations> TownPopulations { get; set; }

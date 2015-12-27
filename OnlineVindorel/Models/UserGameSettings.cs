@@ -30,10 +30,13 @@ namespace OnlineVindorel.Models
         public int NaturalAttack { get; set; }
         public int NaturalDef { get; set; }
 
-        public string Job { get; set; }
-        public string Race { get; set; }
         public string God { get; set; }
-        
+
+        public int BattleStat { get; set; }
+        public int VictoryStat { get; set; }
+        public int DefeatStat { get; set; }
+
+
         public string UserId { get; set; }
         public Account User { get; set; }
 

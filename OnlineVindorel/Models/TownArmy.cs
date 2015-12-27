@@ -11,6 +11,8 @@ namespace OnlineVindorel.Models
         [Key]
         public int TownArmyID { get; set; }
 
+        public int Bowman { get; set; }
+        public int Rider { get; set; }
         public int Swordman { get; set; }
 
         public int TownId { get; set; }
