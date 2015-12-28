@@ -26,7 +26,7 @@ namespace OnlineVindorel.Controllers
         }
 
         // GET: Game
-        [Authorize]
+        [Authorize(Roles = "Player")]
         public async Task<IActionResult> Index()
         {
            var Player = await _userManager.FindByIdAsync(User.GetUserId());
@@ -47,7 +47,7 @@ namespace OnlineVindorel.Controllers
 
             
         }
-        [Authorize]
+        [Authorize(Roles = "Player")]
         public async Task<IActionResult> Starter(UserGameSettings Starter)
         {
             var Player = await _userManager.FindByIdAsync(User.GetUserId());
@@ -58,13 +58,14 @@ namespace OnlineVindorel.Controllers
 
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = "Player")]
         public async Task<IActionResult> Buildings()
         {
-            UpdateAll Engine = new UpdateAll();
+            var Town = await _context.Towns.LastOrDefaultAsync(x => x.UserId == User.GetUserId());
             var Player = await _userManager.FindByIdAsync(User.GetUserId());
             var Set = await _context.UserGameSettings.LastOrDefaultAsync(x => x.UserId == User.GetUserId());
-            var Town = await _context.Towns.LastOrDefaultAsync(x => x.UserId == User.GetUserId());
             UpgradeSystem model = new UpgradeSystem();
+            UpdateAll Engine = new UpdateAll();
 
             Engine.UpdateResource(Town);
             Engine.UpdateBuildings(Town);
@@ -76,7 +77,7 @@ namespace OnlineVindorel.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Player")]
         public async Task<IActionResult> Upgrade(UpgradeSystem selected)
         {
             UpdateAll upengine = new UpdateAll();
@@ -116,7 +117,7 @@ namespace OnlineVindorel.Controllers
                 return View("Buildings");
             }
         }
-        [Authorize]
+        [Authorize(Roles = "Player")]
         public async Task<IActionResult> MyAccount()
         {
 

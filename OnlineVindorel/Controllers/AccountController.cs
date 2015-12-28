@@ -98,11 +98,11 @@ namespace OnlineVindorel.Controllers
                 user.Email = model.Email;
                 user.GameSettings.Add(new UserGameSettings { UserId = user.Id,God = model.God });
                 var result = await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, "Player");
                 if (result.Succeeded)
                 {
                  
-                
-                    await _signInManager.SignInAsync(user, isPersistent: true);
+                     await _signInManager.SignInAsync(user, isPersistent: true);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToAction(nameof(GameController.Index), "Game",user);
                 }

@@ -37,7 +37,7 @@ namespace OnlineVindorel
         public IConfigurationRoot Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public async void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddEntityFramework()
@@ -60,7 +60,9 @@ namespace OnlineVindorel
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
+        public async void Configure(IApplicationBuilder app, 
+            IHostingEnvironment env,
+            ILoggerFactory loggerFactory,
             dbInıt Default)
         {
 
@@ -91,7 +93,7 @@ namespace OnlineVindorel
             }
 
             app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
-            
+
             app.UseStaticFiles();
 
             app.UseIdentity();
@@ -105,10 +107,8 @@ namespace OnlineVindorel
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-
-            await Default.InitializeDataAsync();
-
         }
+
 
         // Entry point for the application.
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);

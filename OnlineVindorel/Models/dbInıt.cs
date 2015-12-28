@@ -41,7 +41,6 @@ namespace OnlineVindorel.Models
         private async Task CreateUsersAsync()
         {
             var email = "gurcaglarogulcan@gmail.com";
-            var password = "5111@@can";
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
