@@ -10,8 +10,9 @@ namespace OnlineVindorel.GameEngine
     {
         public Towns UpdateResource(Towns Town)
         {
-            VindorelDbContext _context = new VindorelDbContext(); 
-            if(DateTime.Now.Ticks-Town.LastUpdated.Ticks > 100 )
+
+            VindorelDbContext _context = new VindorelDbContext();
+            if (DateTime.Now.Ticks - Town.LastUpdated.Ticks > 1000)
             {
                 Town.TownGOLD += Town.TownGOLD_perHour;
                 Town.TownIRON += Town.TownIRON_perHour;
@@ -20,6 +21,7 @@ namespace OnlineVindorel.GameEngine
                 Town.TownMEAT += Town.TownMeat_perHour;
                 Town.LastUpdated = DateTime.Now;
             }
+  
             _context.SaveChanges();
             return Town;
         }
@@ -96,7 +98,7 @@ namespace OnlineVindorel.GameEngine
                     Town.TownGOLD_perHour = Building.Gain_TownGOLD_perHour;
                     Town.TownIRON_perHour = Building.Gain_TownIRON_perHour;
                     Town.TownMeat_perHour = Building.Gain_TownMeat_perHour;
-                    Town.TownWHEAT_perHour += Building.Gain_TownWHEAT_perHour;
+                    Town.TownWHEAT_perHour = Building.Gain_TownWHEAT_perHour;
                     Populations.TraderPop += Building.Gain_TraderPop;
                     Populations.AggressivePop += Building.Gain_AgressivePop;
                     Populations.CulturalPop += Building.Gain_CulturalPop;

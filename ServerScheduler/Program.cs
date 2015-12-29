@@ -9,7 +9,6 @@ namespace ServerScheduler
 {
     class Program
     {
-        public DateTime finishedTime { get; set; }
         static void Main(string[] args)
         {
          

@@ -89,9 +89,9 @@ namespace OnlineVindorel.Controllers
             upengine.UpdateResource(Town);
             upengine.UpdateBuildings(Town);
             await _context.SaveChangesAsync();
-            if (ModelState.IsValid && production.Cost_Iron < Town.TownIRON
-                && production.Cost_Meat < Town.TownMEAT && production.Cost_Wheat 
-                < Town.TownWHEAT && production.Cost_Wood < Town.TownWOOD )
+            if (ModelState.IsValid && production.Cost_Iron <= Town.TownIRON
+                && production.Cost_Meat <= Town.TownMEAT && production.Cost_Wheat 
+                <= Town.TownWHEAT && production.Cost_Wood <= Town.TownWOOD )
             {
                 Town.TownWHEAT = Town.TownWHEAT - production.Cost_Wheat;
                 Town.TownMEAT = Town.TownMEAT - production.Cost_Meat;
@@ -113,8 +113,9 @@ namespace OnlineVindorel.Controllers
             }
             else
             {
+                await _context.SaveChangesAsync();
                 ModelState.AddModelError("", "Not Enough Resources");
-                return View("Buildings");
+                return View("Buildings", buildings);
             }
         }
         [Authorize(Roles = "Player")]
@@ -125,17 +126,19 @@ namespace OnlineVindorel.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> NameUpdate(string newname)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> NameUpdate(NameViewModel newname)
         {
 
             var Town = await _context.Towns.LastOrDefaultAsync(x => x.UserId == User.GetUserId());
 
-            Town.TownName = newname;
+            Town.TownName = newname.Name;
             await _context.SaveChangesAsync();
             return View("MyAccount");
         }
         [Authorize(Roles = "Admin")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string name)
         {
 

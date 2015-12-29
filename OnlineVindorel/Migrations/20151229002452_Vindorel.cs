@@ -5,7 +5,7 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace OnlineVindorel.Migrations
 {
-    public partial class Vindorel_Online : Migration
+    public partial class Vindorel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

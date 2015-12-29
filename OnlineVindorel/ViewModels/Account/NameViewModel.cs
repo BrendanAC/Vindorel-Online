@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace OnlineVindorel.ViewModels.Account
 {
-    public class FirstStart
-    {
-        [Required]
-        public string Job { get; set; }
-
-        [Required]
-        public string Race { get; set; }
-
+    public class NameViewModel
+    { 
+        [Required(ErrorMessage ="Give a new Name!!")]
+        public string Name { get; set; }
     }
 }

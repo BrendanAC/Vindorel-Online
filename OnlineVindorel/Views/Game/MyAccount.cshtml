@@ -1,4 +1,5 @@
 ﻿@using System.Security.Claims
+@model OnlineVindorel.ViewModels.Account.NameViewModel
 @{
     VindorelDbContext _context = new VindorelDbContext();
     var UserTown = _context.Towns.LastOrDefault(x => x.UserId == User.GetUserId());
@@ -125,7 +126,7 @@
             <div class="w-form changeyourname">
                 <form asp-controller="Game" asp-action="NameUpdate" id="townform" name="townform" data-name="Email Form" class="changingname">
                     <label for="name">Town Name :@UserTown.TownName&nbsp;</label>
-                    <input asp-for="@UserTown.TownName" id="name" type="text" placeholder="New Town Name" name="name" data-name="Name" class="w-input update">
+                    <input asp-for="Name" id="name" type="text" placeholder="New Town Name" class="w-input update">
                     <input type="submit" value="Change Your Town Name" class="w-button updatename">
                 </form>
             </div>

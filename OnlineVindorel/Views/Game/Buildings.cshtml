@@ -55,15 +55,15 @@
             <a href="#" class="w-inline-block">
                 <img src="~/images/mail59.png" data-ix="popu" class="messages">
             </a>
-            <a href="#" class="w-inline-block">
+            <a href="/Game/MyAccount/" class="w-inline-block">
                 <img src="~/images/user168.png" data-ix="popu" class="myaccount">
             </a>
             <a href="#" class="w-inline-block">
                 <img src="~/images/tools6.png" data-ix="popu" class="settings">
             </a>
-            <a href="#" class="w-inline-block linkblocks">
-                <img src="~/images/sign4.png" data-ix="popu" class="signout">
-            </a>
+            <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="w-inline-block linkblocks">
+                <button type="submit" class="w-inline-block linkblocks"></button>
+            </form>
         </div>
         <div class="logindesc">Welcome @User.GetUserName(). You Are in @UserTown.TownName</div>
         <div class="rightres">
@@ -116,7 +116,6 @@
         </div>
     </div>
     <div class="w-clearfix gamewindow">
-        <span asp-validation-for="Upgrades"></span>
         <div class="w-row buildingrow">
             <div class="w-col w-col-3">
                 <img src="~/images/monument46.png">
